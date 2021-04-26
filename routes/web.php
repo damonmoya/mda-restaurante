@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
+Route::get('/home', function () {
+    return view('home');
+});
+Route::resource('prueba', 'pruebaController');
 
 Route::get('/register', 'App\Http\Controllers\RegistrationController@create')->name('register_form');
 Route::post('register', 'App\Http\Controllers\RegistrationController@store')->name('register_send');
