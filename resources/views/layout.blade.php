@@ -40,17 +40,11 @@
             $user = auth()->user();
           ?>
             <li class="nav-item">
-              Sesión iniciada como: {{ $user->name }}
-            </li>
-            <li class="nav-item">
-              <form method="POST" action="#">
-                {{ csrf_field() }}
-                <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
-              </form>
+              <a class="btn btn-danger" href="{{ route('logout') }}">Cerrar sesión</a>
             </li>
           @else
             <li class="nav-item">
-                <a class="nav-link" href="#">Iniciar sesión</a>
+              <a class="btn btn-info" href="{{ route('login_form') }}">Iniciar sesión</a>
             </li>
           @endif  
         </ul>

@@ -12,9 +12,16 @@
   <div class="row">
     <div class="col">
 
-    <h3>¡Bienvenido, visitante!</h3>
-    <a href="#" class="btn btn-outline-primary">Iniciar sesión</a>
-    <a href="#" class="btn btn-outline-primary">Registrarse</a>
+    @if (auth()->check())
+        <?php
+          $user = auth()->user();
+        ?>
+        <h3>¡Saludos, {{ $user->name }}!</h3>
+      @else
+        <h3>¡Bienvenido, visitante!</h3>
+        <a href="{{ route('login_form') }}" class="btn btn-primary">Iniciar sesión</a>
+        <a href="{{ route('register_form') }}" class="btn btn-info">Registrarse</a>
+      @endif
 
     </div>
   </div>
