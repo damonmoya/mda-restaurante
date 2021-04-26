@@ -32,6 +32,16 @@
         </div>
 
         <div class="form-group">
+            <label for="address">Dirección:</label>
+            <input type="text" class="form-control" id="address" name="address" value="{{ old('address') }}">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Teléfono:</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{ old('phone') }}">
+        </div>
+
+        <div class="form-group">
             <label for="password">Clave:</label>
             <input type="password" class="form-control" id="password" name="password">
         </div>
