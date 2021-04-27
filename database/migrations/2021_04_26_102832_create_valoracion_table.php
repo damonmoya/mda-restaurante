@@ -13,7 +13,7 @@ class CreateValoracionTable extends Migration
      */
     public function up()
     {
-        Schema::create('valoracion', function (Blueprint $table) {
+        Schema::create('valoraciones', function (Blueprint $table) {
             $table->id('idRating'); #pk
             $table->integer('idClient'); #fk
             $table->integer('idOrder'); #fk
@@ -30,6 +30,6 @@ class CreateValoracionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('valoracion');
+        Schema::dropIfExists('valoraciones');
     }
 }

@@ -13,7 +13,7 @@ class CreateFacturaTable extends Migration
      */
     public function up()
     {
-        Schema::create('factura', function (Blueprint $table) {
+        Schema::create('facturas', function (Blueprint $table) {
             $table->id('idInvoice'); #pk
             $table->integer('idClient'); #fk
             $table->integer('idOrder'); #fk
@@ -30,6 +30,6 @@ class CreateFacturaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('factura');
+        Schema::dropIfExists('facturas');
     }
 }

@@ -13,7 +13,7 @@ class CreatePedidoTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedido', function (Blueprint $table) {
+        Schema::create('pedidos', function (Blueprint $table) {
             $table->id('idOrder'); #pk
             /* Pedido se compone de Productos ¿Cómo? */
             $table->integer('idClient'); #fk
@@ -31,6 +31,6 @@ class CreatePedidoTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedido');
+        Schema::dropIfExists('pedidos');
     }
 }

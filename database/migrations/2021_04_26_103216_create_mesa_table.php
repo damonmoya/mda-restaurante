@@ -13,7 +13,7 @@ class CreateMesaTable extends Migration
      */
     public function up()
     {
-        Schema::create('mesa', function (Blueprint $table) {
+        Schema::create('mesas', function (Blueprint $table) {
             $table->id('idTable');           #pk
             $table->integer('idReservation');    #fk
             $table->integer('capacity');     #capacidad de la mesa
@@ -29,6 +29,6 @@ class CreateMesaTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('mesa');
+        Schema::dropIfExists('mesas');
     }
 }
