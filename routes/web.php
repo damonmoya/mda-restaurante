@@ -20,7 +20,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-Route::resource('prueba', 'pruebaController');
+Route::resource('prueba', 'App\Http\Controllers\pruebaController');
 
 Route::get('/register', 'App\Http\Controllers\RegistrationController@create')->name('register_form');
 Route::post('register', 'App\Http\Controllers\RegistrationController@store')->name('register_send');
@@ -30,4 +30,4 @@ Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('log
 
 Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy')->name('logout');
 
-Route::resource('dishes', 'DishesController');
+Route::resource('dishes', 'App\Http\Controllers\DishesController');
