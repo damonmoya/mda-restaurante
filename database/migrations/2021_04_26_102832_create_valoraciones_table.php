@@ -15,8 +15,8 @@ class CreateValoracionTable extends Migration
     {
         Schema::create('valoraciones', function (Blueprint $table) {
             $table->id('idRating'); #pk
-            $table->integer('idClient'); #fk
-            $table->integer('idOrder'); #fk
+            $table->integer('idClient')->references('id')->on('users');
+            $table->integer('idOrder')->references('idOrder')->on('Pedidos');
             $table->integer('rating');
             $table->string('comment');
             $table->timestamps();

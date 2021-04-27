@@ -15,11 +15,18 @@ class CreatePedidoTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id('idOrder'); #pk
-            /* Pedido se compone de Productos ¿Cómo? */
-            $table->integer('idClient'); #fk
-            $table->integer('idInvoice'); #fk
-            $table->date('date_send');
-            $table->string('address');
+            $table->id('idInvoice');
+            
+            # FK con id del cliente que hace el pedido
+            $table->foreign('idClient')->references('id')->on('users'); 
+
+            /* Pedido se compone de Productos ¿Cómo? Usando entradas en tabla '_productos_pedido' */
+                        
+            $table->date('date_send'); # Fecha de envío del pedido
+            $table->string('address'); # Dirección del envío
+            $table->decimal('cost'); # Coste total del pedido (y factura)
+            $table->date('dateInvoice'); # Fecha de emisión de la factura
+
             $table->timestamps();
         });
     }
