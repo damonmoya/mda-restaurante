@@ -29,3 +29,5 @@ Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('lo
 Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
 
 Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy')->name('logout');
+
+Route::resource('dishes', 'DishesController');

@@ -7,7 +7,7 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 
-    <title>@yield('title') - Mi proyecto</title>
+    <title>@yield('title') - Il Gusto Di Roma</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 
@@ -20,26 +20,26 @@
 
     <header>
       <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-success">
-        <a class="navbar-brand" href="{{ route('home') }}">Logo</a>
+      <nav class="navbar navbar-expand-md navbar-dark bg-success">
+        <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('/logos/logo_2.png') }}" alt="logo" height="80" width="380"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarCollapse">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
+            <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Inicio<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Carta del restaurante<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Pedir a domicilio<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Reservas<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
+            <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
           </ul>
@@ -56,7 +56,8 @@
             </li>
           @else
             <li class="nav-item">
-              <a class="btn btn-info" href="{{ route('login_form') }}">Iniciar sesión</a>
+              <a href="{{ route('register_form') }}" class="btn btn-danger">Registrarse</a>
+              <a class="btn btn-danger" href="{{ route('login_form') }}">Iniciar sesión</a>
             </li>
           @endif  
         </ul>
@@ -73,9 +74,9 @@
       @yield('content')
     </main>
 
-    <footer class="footer bg-dark text-white">
-      <div class="container">
-        <span class="text-muted">Proyecto con Laravel</span>
+    <footer class="footer bg-success footer-dark text-white">
+      <div class="container text-center">
+        <span class="footer-text">Il Gusto Di Roma 2021</span>
       </div>
     </footer>
 
