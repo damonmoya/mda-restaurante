@@ -20,8 +20,8 @@
 
     <header>
       <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
-        <a class="navbar-brand" href="{{ route('home') }}">Mi proyecto</a>
+      <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-success">
+        <a class="navbar-brand" href="{{ route('home') }}">Logo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -29,6 +29,18 @@
           <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
               <a class="nav-link" href="{{ route('home') }}">Inicio<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ route('home') }}">Carta del restaurante<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ route('home') }}">Pedir a domicilio<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ route('home') }}">Reservas<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
           </ul>
         </div>
