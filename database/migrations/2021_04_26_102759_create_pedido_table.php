@@ -15,6 +15,7 @@ class CreatePedidoTable extends Migration
     {
         Schema::create('pedido', function (Blueprint $table) {
             $table->id('idOrder'); #pk
+            /* Pedido se compone de Productos ¿Cómo? */
             $table->integer('idClient'); #fk
             $table->integer('idInvoice'); #fk
             $table->date('date_send');
