@@ -15,4 +15,11 @@ class Valoracion extends Model
      * @var string
      */
     protected $table = 'valoraciones';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'idRating';
 }

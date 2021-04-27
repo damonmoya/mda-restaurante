@@ -15,4 +15,11 @@ class Factura extends Model
      * @var string
      */
     protected $table = 'facturas';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'idInvoice';
 }

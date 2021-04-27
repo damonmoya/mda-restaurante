@@ -15,4 +15,11 @@ class Productos extends Model
      * @var string
      */
     protected $table = 'productos';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'idProduct';
 }

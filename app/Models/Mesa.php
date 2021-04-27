@@ -15,4 +15,11 @@ class Mesa extends Model
      * @var string
      */
     protected $table = 'mesas';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'idTable';
 }

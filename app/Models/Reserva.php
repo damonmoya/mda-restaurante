@@ -15,4 +15,11 @@ class Reserva extends Model
      * @var string
      */
     protected $table = 'reservas';
+
+    /**
+     * The primary key associated with the table.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'idReservation';
 }
