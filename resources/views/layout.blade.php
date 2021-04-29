@@ -55,6 +55,9 @@
             $user = auth()->user();
           ?>
             <li class="nav-item">
+              <a class="nav-link" href="{{ route('users.show', $user->id) }}">{{ $user->name }} {{ $user->surname }}</a>
+            </li>
+            <li class="nav-item">
               <a class="btn btn-danger" href="{{ route('logout') }}">Cerrar sesión</a>
             </li>
           @else
