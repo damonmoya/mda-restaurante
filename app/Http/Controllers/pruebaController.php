@@ -65,7 +65,7 @@ class pruebaController extends Controller
      */
     public function edit($id)
     {
-        $prueba = prueba::find($id);
+        $prueba = Prueba::find($id);
         return view('prueba.CRU')->with('prueba', $prueba, 'action', 'edit');
     }
 
@@ -96,7 +96,7 @@ class pruebaController extends Controller
      */
     public function destroy($id)
     {
-        $prueba = prueba::find($id);
+        $prueba = Prueba::find($id);
         $prueba->delete();
         return Redirect::to('pruebas');
     }

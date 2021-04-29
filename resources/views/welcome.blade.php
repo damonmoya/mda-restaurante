@@ -10,7 +10,7 @@
   </div>
 
   <div class="row">
-    <div class="col">
+    <!-- <div class="col"> -->
 
     <h2>TRABAJAR EN WELCOMEBLADE.PHP la info del restaurante</h2>
 

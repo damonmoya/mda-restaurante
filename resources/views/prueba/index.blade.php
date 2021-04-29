@@ -13,17 +13,17 @@
       </tr>
     </thead>
     <tbody>
-    @foreach($pruebas as $key => $value)
+    @foreach($pruebas as $prueba)
       <tr>
-        <th>$value->id</th>
-        <td>$value->name</td>
-        <td>$value->description</td>
+        <th>{{ $prueba->id }}</th>
+        <td>{{ $prueba->name }}</td>
+        <td>{{ $prueba->description }}</td>
         <td>
-          <a class="btn btn-small btn-success" href="{{ URL::to('prueba/' . $value->id) }}">Show</a>
-          <a class="btn btn-small btn-info" href="{{ URL::to('prueba/' . $value->id . '/edit') }}">Edit</a>
-          <form action="{{ route('prueba.destroy', $value->id) }}" method="POST">
+          <a class="btn btn-small btn-success" href="{{ URL::to('prueba/' . $prueba->id ) }}">Show</a>
+          <a class="btn btn-small btn-info" href="{{ URL::to('prueba/' . $prueba->id . '/edit') }}">Edit</a>
+          <form action="{{ URL::to ('prueba.destroy', ['id' => $prueba->id])}}" method="post">
+            @method("delete")
             @csrf
-            @method('DELETE')
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
         </td>

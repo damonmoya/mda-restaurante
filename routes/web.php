@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\pruebaController;
+// use App\Http\Controllers\RegistrationController;
+// use App\Http\Controllers\SessionsController;
+// use App\Http\Controllers\DishesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +24,7 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-Route::resource('/prueba', pruebaController::class);
+Route::resource('prueba', pruebaController::class);
 
 Route::get('/register', 'App\Http\Controllers\RegistrationController@create')->name('register_form');
 Route::post('register', 'App\Http\Controllers\RegistrationController@store')->name('register_send');

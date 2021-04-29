@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePedidoTable extends Migration
+class CreatePedidosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreatePedidoTable extends Migration
     {
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id('idOrder'); #pk
-            $table->id('idInvoice');
+            // $table->increments('idInvoice');
             
             # FK con id del cliente que hace el pedido
             $table->foreign('idClient')->references('id')->on('users'); 
