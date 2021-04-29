@@ -42,6 +42,9 @@
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active text-nowrap">
+              <a class="nav-link" href="{{ route('users.index') }}">Usuarios<span class="sr-only">(current)</span></a>
+            </li>
           </ul>
         </div>
         <div class="navbar-collapse collapse w-100 order-3">
