@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePedidosTable extends Migration
+class CreateFacturasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,19 @@ class CreatePedidosTable extends Migration
      */
     public function up()
     {
-        Schema::create('pedidos', function (Blueprint $table) {
-            $table->id('idOrder'); #pk
+        Schema::create('facturas', function (Blueprint $table) {
+            $table->id('idInvoice');
             
             # FK con id del cliente que hace el pedido
             $table->integer('idClient');
             $table->foreign('idClient')->references('id')->on('users'); 
 
-            /* Pedido se compone de Productos ¿Cómo? Usando entradas en tabla '_productos_pedido' */
+            # FK con id del pedido
+            $table->integer('idOrder');
+            $table->foreign('idOrder')->references('idOrder')->on('pedidos'); 
                         
-            $table->date('date_send'); # Fecha de envío del pedido
-            $table->string('address'); # Dirección del envío
-            $table->decimal('cost'); # Coste total del pedido 
+            $table->date('date_invoice'); # Fecha de expedición de factura
+            $table->decimal('cost'); # Coste total de la factura
 
             $table->timestamps();
         });
@@ -37,6 +38,6 @@ class CreatePedidosTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('_facturas');
     }
 }
