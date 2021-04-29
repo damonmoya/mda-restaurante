@@ -16,9 +16,19 @@ use App\Http\Controllers\pruebaController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
+
 Route::get('/home', function () {
     return view('home');
 });
 Route::resource('/prueba', pruebaController::class);
 
+Route::get('/register', 'App\Http\Controllers\RegistrationController@create')->name('register_form');
+Route::post('register', 'App\Http\Controllers\RegistrationController@store')->name('register_send');
+
+Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('login_form');
+Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
+
+Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy')->name('logout');
+
+Route::resource('dishes', 'App\Http\Controllers\DishesController');
