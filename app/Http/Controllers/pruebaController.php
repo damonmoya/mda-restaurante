@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Prueba;
 
 class pruebaController extends Controller
 {
@@ -13,8 +14,8 @@ class pruebaController extends Controller
      */
     public function index()
     {
-        $pruebas = prueba::all();
-        return View::make('prueba.index')->with('pruebas', $pruebas);
+        $pruebas = Prueba::all();
+        return view('prueba.index')->with('pruebas', $pruebas);
     }
 
     /**
@@ -41,10 +42,6 @@ class pruebaController extends Controller
             'description' => 'required',
         ]);
         Prueba::create($request->all());
-        // $prueba = new prueba();
-        // $prueba->name = Input::get('name');
-        // $prueba->description = Input::get('description');
-        // $prueba->save();
         return Redirect::to('pruebas');
     }
 
@@ -57,7 +54,6 @@ class pruebaController extends Controller
     public function show($id)
     {
         $prueba = prueba::find($id);
-        // return View::make('prueba.show')->with('prueba', $prueba);
         return view('prueba.CRU')->with('prueba', $prueba, 'action', 'show');
     }
 
@@ -70,7 +66,6 @@ class pruebaController extends Controller
     public function edit($id)
     {
         $prueba = prueba::find($id);
-        // return View::make('prueba.edit')->with('prueba', $prueba);
         return view('prueba.CRU')->with('prueba', $prueba, 'action', 'edit');
     }
 
@@ -90,9 +85,6 @@ class pruebaController extends Controller
         
         $prueba::find($id);
         $prueba->update($request->all());
-        // $prueba->name = Input::get('name');
-        // $prueba->description = Input::get('description');
-        // $prueba->save();
         return Redirect::to('pruebas');
     }
 

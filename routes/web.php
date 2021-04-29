@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\pruebaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,5 +20,5 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-Route::resource('/prueba', 'pruebaController');
+Route::resource('/prueba', pruebaController::class);
 
