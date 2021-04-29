@@ -19,5 +19,5 @@ Route::get('/', function () {
 Route::get('/home', function () {
     return view('home');
 });
-Route::resource('prueba', 'pruebaController');
+Route::resource('/prueba', 'pruebaController');
 

@@ -24,7 +24,8 @@ class pruebaController extends Controller
      */
     public function create()
     {
-        return View::make('prueba.create');
+        // return View::make('prueba.create');
+        return view('prueba.CRU')->with('action', 'create');
     }
 
     /**
@@ -35,10 +36,15 @@ class pruebaController extends Controller
      */
     public function store(Request $request)
     {
-        $prueba = new prueba();
-        $prueba->name = Input::get('name');
-        $prueba->description = Input::get('description');
-        $prueba->save();
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        Prueba::create($request->all());
+        // $prueba = new prueba();
+        // $prueba->name = Input::get('name');
+        // $prueba->description = Input::get('description');
+        // $prueba->save();
         return Redirect::to('pruebas');
     }
 
@@ -51,7 +57,8 @@ class pruebaController extends Controller
     public function show($id)
     {
         $prueba = prueba::find($id);
-        return View::make('prueba.show')->with('prueba', $prueba);
+        // return View::make('prueba.show')->with('prueba', $prueba);
+        return view('prueba.CRU')->with('prueba', $prueba, 'action', 'show');
     }
 
     /**
@@ -63,7 +70,8 @@ class pruebaController extends Controller
     public function edit($id)
     {
         $prueba = prueba::find($id);
-        return View::make('prueba.edit')->with('prueba', $prueba);
+        // return View::make('prueba.edit')->with('prueba', $prueba);
+        return view('prueba.CRU')->with('prueba', $prueba, 'action', 'edit');
     }
 
     /**
@@ -75,10 +83,16 @@ class pruebaController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'title' => 'required',
+            'description' => 'required',
+        ]);
+        
         $prueba::find($id);
-        $prueba->name = Input::get('name');
-        $prueba->description = Input::get('description');
-        $prueba->save();
+        $prueba->update($request->all());
+        // $prueba->name = Input::get('name');
+        // $prueba->description = Input::get('description');
+        // $prueba->save();
         return Redirect::to('pruebas');
     }
 

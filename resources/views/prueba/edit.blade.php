@@ -4,21 +4,22 @@
 
 @section('content')
   <h1>Create an element</h1>
-  {{ Form::model($prueba, array('route' => array('prueba.update', %prueba->id), 'method' => 'PUT')) }}
-
-    <div class="form-group">
-      {{ Form::label('name', 'Name') }}
-      <!-- cambiar input por null -->
-      {{ Form::text('name', Input::old('name'), array('class' => 'form-control')) }}
+  <form action="{{ route('prueba.store', $value->id) }}" method="POST">
+  @scrf
+  @method('PUT')
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="name" aria-describedby="name" value="{{ $prueba->name }}">
     </div>
-
-    <div class="form-group">
-      {{ Form::label('description', 'Description') }}
-      {{ Form::text('description', Input::old('description'), array('class' => 'form-control')) }}
+    <div class="mb-3">
+      <label for="name" class="form-label">Description</label>
+      <input type="text" class="form-control" id="description" aria-describedby="description" value="{{ $prueba->description }}">
     </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Edit</button>
+      <button type="button" class="btn btn-secundary">Cancel</button>
 
-    {{ Form::submit('edit the shark!', array('class' => 'btn btn-primary')) }}
-
-  {{ Form::close() }}
+    </div>
+  </form>
   
 @endsection

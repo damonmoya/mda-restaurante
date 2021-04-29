@@ -21,10 +21,11 @@
         <td>
           <a class="btn btn-small btn-success" href="{{ URL::to('prueba/' . $value->id) }}">Show</a>
           <a class="btn btn-small btn-info" href="{{ URL::to('prueba/' . $value->id . '/edit') }}">Edit</a>
-          {{ Form::open(array('url' => 'pruebas/' . $value->id, 'class' => 'pull-right')) }}
-            {{ Form::hidden('_method', 'DELETE') }}
-            {{ Form::submit('Delete this shark', array('class' => 'btn btn-warning')) }}
-          {{ Form::close() }}
+          <form action="{{ route('prueba.destroy', $value->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
         </td>
       </tr>
     @endforeach
