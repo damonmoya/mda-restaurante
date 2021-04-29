@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\pruebaController;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\UserController;
@@ -29,7 +28,6 @@ Route::get('/home', function () {
 });
 
 Route::resource('users', UserController::class);
-Route::resource('prueba', pruebaController::class);
 Route::resource('pedido', PedidoController::class);
 Route::resource('mesa', MesaController::class);
 
