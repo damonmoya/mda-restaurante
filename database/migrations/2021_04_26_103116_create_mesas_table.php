@@ -16,7 +16,7 @@ class CreateMesasTable extends Migration
         Schema::create('mesas', function (Blueprint $table) {
             $table->id('idTable');           #pk
             $table->integer('capacity');     #capacidad de la mesa
-            $table->boolean('availability'); #disponibilidad de la mesa
+            $table->integer('availability'); #disponibilidad de la mesa
             $table->timestamps(); 
         });
     }

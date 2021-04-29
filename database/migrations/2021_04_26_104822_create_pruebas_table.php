@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePruebaTable extends Migration
+class CreatePruebasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePruebaTable extends Migration
      */
     public function up()
     {
-        Schema::table('prueba', function (Blueprint $table) {
-            $table->id('id');
+        Schema::table('pruebas', function (Blueprint $table) {
+            $table->id();
             $table->string('name', 255);
             $table->string('description', 512);
             $table->timestamps();
