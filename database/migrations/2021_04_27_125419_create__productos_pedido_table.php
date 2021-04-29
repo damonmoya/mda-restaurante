@@ -15,9 +15,12 @@ class CreateProductosPedidoTable extends Migration
     {
         Schema::create('_productos_pedido', function (Blueprint $table) {
             $table->id('id');
-            $table->integer('idOrder')->references('idOrder')->on('pedidos'); #fk
+
+            $table->integer('idOrder');
+            $table->foreign('idOrder')->references('idOrder')->on('pedidos'); #fk
             /* id+idOrder => pk */
-            $table->integer('idProduct')->references('idProduct')->on('productos');; #fk
+            $table->integer('idProduct');
+            $table->foreign('idProduct')->references('idProduct')->on('productos');; #fk
             $table->double('price', 4, 3);
             $table->double('discount', 4, 3);
             $table->timestamps();

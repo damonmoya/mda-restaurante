@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateValoracionTable extends Migration
+class CreateValoracionesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,9 @@ class CreateValoracionTable extends Migration
     {
         Schema::create('valoraciones', function (Blueprint $table) {
             $table->id('idRating'); #pk
+            $table->integer('idClient');
             $table->foreign('idClient')->references('id')->on('users')->nullable(false);
+            $table->integer('idOrder');
             $table->foreign('idOrder')->references('idOrder')->on('Pedidos')->nullable(false);
             $table->integer('rating');
             $table->string('comment');

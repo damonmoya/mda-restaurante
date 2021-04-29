@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateReservaTable extends Migration
+class CreateReservasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,9 @@ class CreateReservaTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id('idReservation'); #pk
+            $table->integer('idClient');
             $table->foreign('idClient')->references('id')->on('users');
+            $table->integer('idTable');
             $table->foreign('idTable')->references('idTable')->on('mesas');
             $table->date('date');
             $table->timestamps();
