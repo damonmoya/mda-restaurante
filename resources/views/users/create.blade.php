@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', "Registrarse")
+@section('title', "Crear nuevo usuario")
 
 @section('content')
 
-    <h2>Registrarse</h2>
+    <h2>Crear nuevo usuario</h2>
 
     {{--Sección de errores--}}
     @if ($errors->any())
@@ -19,7 +19,7 @@
     @endif
 
     {{--Sección de formulario--}}
-    <form method="POST" action="{{ route('register_send') }}">
+    <form method="POST" action="{{ route('users.store') }}">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-4">
@@ -83,7 +83,7 @@
     </form>
 
     <p>
-        <a href="{{ route('home') }} " class="btn btn-outline-primary">Regresar a Home</a>
+        <a href="{{ route('users.index') }} " class="btn btn-outline-primary">Regresar a listado de usuarios</a>
     </p>
 
 @endsection

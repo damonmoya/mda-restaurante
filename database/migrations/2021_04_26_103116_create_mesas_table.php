@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMesaTable extends Migration
+class CreateMesasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,9 +15,8 @@ class CreateMesaTable extends Migration
     {
         Schema::create('mesas', function (Blueprint $table) {
             $table->id('idTable');           #pk
-            $table->integer('idReservation');    #fk
             $table->integer('capacity');     #capacidad de la mesa
-            $table->boolean('availability'); #disponibilidad de la mesa
+            $table->integer('availability'); #disponibilidad de la mesa
             $table->timestamps(); 
         });
     }

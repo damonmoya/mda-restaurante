@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Mesa;
 
-class pruebaController extends Controller
+class MesaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,8 @@ class pruebaController extends Controller
      */
     public function index()
     {
-        $pruebas = prueba::all();
-        return View::make('prueba.index')->with('pruebas', $pruebas);
+        $mesas = Mesa::all();
+        return view('mesa.index', compact('mesas'));
     }
 
     /**
@@ -24,7 +25,8 @@ class pruebaController extends Controller
      */
     public function create()
     {
-        return View::make('prueba.create');
+        $action = "Create";
+        return view('mesa.CRU', compact('action'));
     }
 
     /**
@@ -35,11 +37,15 @@ class pruebaController extends Controller
      */
     public function store(Request $request)
     {
-        $prueba = new prueba();
-        $prueba->name = Input::get('name');
-        $prueba->description = Input::get('description');
-        $prueba->save();
-        return Redirect::to('pruebas');
+        $request->validate([
+            // 'title' => 'required',
+            // 'description' => 'required',
+        ]);
+        $mesa = new Mesa();
+        $mesa->capacity = $request->capacity;
+        $mesa->availability = $request->availability;
+        $mesa->save();
+        return redirect('mesa');
     }
 
     /**
@@ -50,8 +56,9 @@ class pruebaController extends Controller
      */
     public function show($id)
     {
-        $prueba = prueba::find($id);
-        return View::make('prueba.show')->with('prueba', $prueba);
+        $mesa = Mesa::find($id);
+        $action = "Show";
+        return view('mesa.CRU', compact('mesa', 'action'));
     }
 
     /**
@@ -62,8 +69,9 @@ class pruebaController extends Controller
      */
     public function edit($id)
     {
-        $prueba = prueba::find($id);
-        return View::make('prueba.edit')->with('prueba', $prueba);
+        $mesa = Mesa::find($id);
+        $action = "Edit";
+        return view('mesa.CRU', compact('mesa', 'action'));
     }
 
     /**
@@ -75,11 +83,16 @@ class pruebaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $prueba::find($id);
-        $prueba->name = Input::get('name');
-        $prueba->description = Input::get('description');
-        $prueba->save();
-        return Redirect::to('pruebas');
+        $request->validate([
+            // 'title' => 'required',
+            // 'description' => 'required',
+        ]);
+        
+        $mesa = Mesa::find($id);
+        $mesa->capacity = $request->capacity;
+        $mesa->availability = $request->availability;
+        $mesa->save();
+        return redirect('mesa');
     }
 
     /**
@@ -90,8 +103,8 @@ class pruebaController extends Controller
      */
     public function destroy($id)
     {
-        $prueba = prueba::find($id);
-        $prueba->delete();
-        return Redirect::to('pruebas');
+        $mesa = Mesa::find($id);
+        $mesa->delete();
+        return redirect('mesa');
     }
 }
