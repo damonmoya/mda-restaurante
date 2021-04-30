@@ -83,4 +83,8 @@
         </div>
     </form>
 
+    <p>
+        <a href="{{ route('users.index') }} " class="btn btn-outline-primary">Regresar a listado de usuarios</a>
+    </p>
+
 @endsection

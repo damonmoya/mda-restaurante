@@ -23,17 +23,21 @@
 
         <div class="form-group">
             <label for="email">Email:</label>
-            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}">
+            <input type="email" class="form-control" id="email" name="email" value="{{ old('email') }}" required>
         </div>
 
         <div class="form-group">
             <label for="password">Clave:</label>
-            <input type="password" class="form-control" id="password" name="password">
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
 
         <div class="form-group">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Iniciar sesión</button>
         </div>
     </form>
+
+    <p>
+        <a href="{{ route('home') }} " class="btn btn-outline-primary">Regresar a Home</a>
+    </p>
 
 @endsection
