@@ -3,6 +3,7 @@
 @section('title', "Nuestra carta")
 
 @section('content')
+    <div class="container">
     <h1 class="mb-3">Platos</h1>
 
     @if ($dishes->isNotEmpty())
@@ -46,4 +47,5 @@
     @else
         <p>No hay platos en la carta</p>
     @endif
+    </div>
 @endsection

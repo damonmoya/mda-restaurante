@@ -23,10 +23,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/home', function () {
-    return view('home');
-});
-
 Route::resource('users', UserController::class);
 Route::resource('pedido', PedidoController::class);
 Route::resource('mesa', MesaController::class);
@@ -40,3 +36,5 @@ Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('log
 Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy')->name('logout');
 
 Route::resource('dishes', 'App\Http\Controllers\DishesController');
+
+Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');

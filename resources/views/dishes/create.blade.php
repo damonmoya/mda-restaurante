@@ -3,7 +3,7 @@
 @section('title', "Crear nuevo plato")
 
 @section('content')
-
+    <div class="container">
     <h2>Crear nuevo plato</h2>
 
     {{--Sección de errores--}}
@@ -72,7 +72,7 @@
             <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar a listado de platos</a>
         </div>
     </form>
-
+    </div>
 @endsection
 
 <script>
@@ -83,9 +83,7 @@
     var baseString;
     reader.onloadend = function () {
         baseString = reader.result;
-        // file.setValue();
-        document.getElementById("image").value = baseString; 
-        console.log(baseString); 
+        document.getElementById("image").value = baseString;
     };
     reader.readAsDataURL(file);
 }

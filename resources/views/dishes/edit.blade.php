@@ -3,7 +3,7 @@
 @section('title', "Editar nuevo plato")
 
 @section('content')
-
+    <div class="container">
     <h2>Editar nuevo plato</h2>
 
     {{--Sección de errores--}}
@@ -72,5 +72,5 @@
           <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar a listado de platos</a>
         </div>
     </form>
-
+    </div>
 @endsection
