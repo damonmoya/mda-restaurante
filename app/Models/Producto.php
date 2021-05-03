@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Productos extends Model
+class Producto extends Model
 {
     use HasFactory;
 
@@ -15,6 +15,7 @@ class Productos extends Model
      * @var string
      */
     protected $table = 'productos';
+    protected $fillable = ['name', 'category', 'ingredients', 'price', 'image'];
 
     /**
      * The primary key associated with the table.

@@ -15,6 +15,7 @@ class Pedido extends Model
      * @var string
      */
     protected $table = 'pedidos';
+    
 
     /**
      * The primary key associated with the table.

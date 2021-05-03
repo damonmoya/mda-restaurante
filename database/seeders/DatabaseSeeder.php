@@ -17,30 +17,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
-
-        // UserSeeder
         $this->call(UserSeeder::class);
-
-        // MesaSeeder
         $this->call(MesaSeeder::class);
-
-        // ReservaSeeder
         $this->call(ReservaSeeder::class);
-
-        // Pedido Seeder
         $this->call(PedidoSeeder::class);
-
-        // FacturaSeeder
         $this->call(FacturaSeeder::class);
-
-        // Producto Seeder
         $this->call(ProductoSeeder::class);
-        
-        // ValoracionSeeder
         $this->call(ValoracionSeeder::class);
-
-        
-        // _Producto_PedidoSeeder
         $this->call(_Producto_PedidoSeeder::class);
     }
 }

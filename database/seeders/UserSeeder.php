@@ -6,6 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use \App\Models\User;
 
 class UserSeeder extends Seeder
 {
@@ -16,34 +17,22 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'surname' => Str::random(5).' '.Str::random(5),
-            'address' => 'Calle '.Str::random(10),
-            'postalCode' => '35612',
-            'phone' => '+34 666 741 666',
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
+        User::factory()->create([
+            'name' => 'Pepe Benavente',
+            'email' => 'pepebenavente@hotmail.es',
+            'password' => bcrypt('elmejorcantante'),
         ]);
 
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'surname' => Str::random(5).' '.Str::random(5),
-            'address' => 'Calle '.Str::random(10),
-            'postalCode' => '35614',
-            'phone' => '+34 666 741 667',
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
+        User::factory()->create([
+            'name' => 'Armiche el surfero',
+            'email' => 'armichesurferito@hotmail.es',
+            'password' => bcrypt('elrompeolas'),
         ]);
 
-        DB::table('users')->insert([
-            'name' => Str::random(10),
-            'surname' => Str::random(5).' '.Str::random(5),
-            'address' => 'Calle '.Str::random(10),
-            'postalCode' => '35613',
-            'phone' => '+34 666 741 668',
-            'email' => Str::random(10).'@gmail.com',
-            'password' => Hash::make('password'),
+        User::factory()->create([
+            'name' => 'Juan Carlos Valerón',
+            'email' => 'valeron21@hotmail.es',
+            'password' => bcrypt('elmago'),
         ]);
     }
 }
