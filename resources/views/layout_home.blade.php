@@ -73,7 +73,7 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container">
+    <main role="main">
 
       <div class="title">
         @yield('header')

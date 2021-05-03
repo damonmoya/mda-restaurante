@@ -85,5 +85,4 @@
     <p>
         <a href="{{ route('home') }} " class="btn btn-outline-primary">Regresar a Home</a>
     </p>
-
 @endsection

@@ -3,7 +3,6 @@
 @section('title', "Iniciar sesión")
 
 @section('content')
-
     <h2>Iniciar sesión</h2>
 
     {{--Sección de errores--}}
@@ -39,5 +38,4 @@
     <p>
         <a href="{{ route('home') }} " class="btn btn-outline-primary">Regresar a Home</a>
     </p>
-
 @endsection
