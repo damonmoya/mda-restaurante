@@ -3,7 +3,7 @@
 @section('title', "Crear nuevo usuario")
 
 @section('content')
-
+    <div class="container">
     <h2>Crear nuevo usuario</h2>
 
     {{--Sección de errores--}}
@@ -85,5 +85,5 @@
     <p>
         <a href="{{ route('users.index') }} " class="btn btn-outline-primary">Regresar a listado de usuarios</a>
     </p>
-
+    </div>    
 @endsection

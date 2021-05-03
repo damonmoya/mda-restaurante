@@ -17,28 +17,28 @@ class PedidoSeeder extends Seeder
     public function run()
     {
         DB::table('pedidos')->insert([
-            'idClient' => 01,
+            'idClient' => 1,
             'date_send' => "2020-03-29 16:20:00",
             'address' => 'Calle '.Str::random(10),
             'cost' => '30'
         ]);
 
         DB::table('pedidos')->insert([
-            'idClient' => 02,
+            'idClient' => 2,
             'date_send' => "2021-10-29 16:20:00",
             'address' => 'Calle '.Str::random(10),
             'cost' => '84'
         ]);
 
         DB::table('pedidos')->insert([
-            'idClient' => 03,
+            'idClient' => 3,
             'date_send' => "2021-05-29 16:20:00",
             'address' => 'Calle '.Str::random(10),
             'cost' => '66.99'
         ]);
 
         DB::table('pedidos')->insert([
-            'idClient' => 02,
+            'idClient' => 2,
             'date_send' => "2021-11-15 02:20:00",
             'address' => 'Calle '.Str::random(10),
             'cost' => '35'

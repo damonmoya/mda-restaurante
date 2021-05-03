@@ -3,6 +3,7 @@
 @section('title', "Usuario {$user->id}")
 
 @section('content')
+    <div class="container">
     <h1>Usuario #{{ $user->id }}</h1>
 
     <p><strong>Nombre completo:</strong> {{ $user->name }} {{ $user->surname }}</p>
@@ -14,5 +15,5 @@
     <p>
         <a href="{{ route('users.index') }} " class="btn btn-outline-primary">Regresar a listado de usuarios</a>
     </p>
-
+    </div>
 @endsection

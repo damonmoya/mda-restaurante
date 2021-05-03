@@ -17,43 +17,59 @@ class ProductoSeeder extends Seeder
     public function run()
     {
         DB::table('productos')->insert([
-            'price' => '10',
-            'image' => 'NO-IMAGE',
-            'category' => Str::random(5),
-            'name' => Str::random(10),
-            'ingredients' => Str::random(40),
+            'price' => '7.60',
+            'image' => 'String',
+            'category' => 'Arroces',
+            'name' => 'Risotto italiano',
+            'ingredients' => 'Arroz, cebolla, queso parmesano, mantequilla, caldo de verduras, vino blanco, sal',
         ]);
 
         DB::table('productos')->insert([
-            'price' => '8',
+            'price' => '10.60',
             'image' => 'NO-IMAGE',
-            'category' => Str::random(5),
-            'name' => Str::random(10),
-            'ingredients' => Str::random(40),
+            'category' => 'Arroces',
+            'name' => 'Arroz con pollo',
+            'ingredients' => 'Pechuga de pollo, tomate, ajo',
+        ]);
+
+        DB::table('productos')->insert([
+            'price' => '8.00',
+            'image' => 'NO-IMAGE',
+            'category' => 'Entrantes',
+            'name' => 'Croquetas',
+            'ingredients' => 'Jamón, pollo, bechamel, huevo y pan',
         ]);
 
         DB::table('productos')->insert([
             'price' => '2',
             'image' => 'NO-IMAGE',
-            'category' => Str::random(5),
-            'name' => Str::random(10),
-            'ingredients' => Str::random(40),
+            'category' => 'Ensaladas',
+            'name' => 'Ensalada italiana',
+            'ingredients' => 'Tomates rojos, aceitunas verdes, cebolla morada, pepino, queso mozzarella, albahaca, aceite de olive virgen extra, sal y pimienta negra',
         ]);
 
         DB::table('productos')->insert([
             'price' => '23.60',
             'image' => 'NO-IMAGE',
-            'category' => Str::random(5),
-            'name' => Str::random(10),
-            'ingredients' => Str::random(40),
+            'category' => 'Pastas',
+            'name' => 'Pasta carbonara',
+            'ingredients' => 'Espaguetis, panceta, huevo, queso parmesano, nata para cocinar, cebolla, aceita, sal y pimienta negra',
         ]);
 
         DB::table('productos')->insert([
-            'price' => '2.60',
+            'price' => '14.50',
             'image' => 'NO-IMAGE',
-            'category' => 'Gal2S',
-            'name' => Str::random(10),
-            'ingredients' => Str::random(40),
+            'category' => 'Pizzas',
+            'name' => 'Barbacoa Gourmet',
+            'ingredients' => 'Pollo marinado, carne de vacuno, mezcla de 5 quesos',
+        ]);
+
+        DB::table('productos')->insert([
+            'price' => '3.25',
+            'image' => 'NO-IMAGE',
+            'category' => 'Postres',
+            'name' => 'Helado de chocolate',
+            'ingredients' => 'Nata, leche, leche condensada, huevos, chocolate 70%, esencia de vainilla y cacao en polvo.',
         ]);
     }
 }

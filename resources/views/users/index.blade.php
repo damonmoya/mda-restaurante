@@ -3,6 +3,7 @@
 @section('title', "Usuarios")
 
 @section('content')
+    <div class="container">
     <h1 class="mb-3">Usuarios</h1>
 
     @if ($users->isNotEmpty())
@@ -42,4 +43,5 @@
     @else
         <p>No hay usuarios registrados</p>
     @endif
+    </div>
 @endsection

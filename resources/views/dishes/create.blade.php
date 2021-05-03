@@ -83,6 +83,7 @@
     var baseString;
     reader.onloadend = function () {
         baseString = reader.result;
+        console.log(baseString);
         document.getElementById("image").value = baseString;
     };
     reader.readAsDataURL(file);
