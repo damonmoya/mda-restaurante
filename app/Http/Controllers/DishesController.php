@@ -107,7 +107,6 @@ class DishesController extends Controller
             'ingredients.required' => 'El campo categoria es obligatorio',
             'ingredients.min' => 'El campo ingredientes debe tener mínimo 2 caracteres',
             'ingredients.max' => 'El campo ingredientes debe tener máximo 100 caracteres',
-            'image.required' => 'El campo correo es obligatorio',
         ]);
         $dish = Producto::findOrFail($id);
         $dish->update($request->all());

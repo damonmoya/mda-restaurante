@@ -62,7 +62,7 @@
             </div>
             <div class="col-8">
                 <div class="form-group">
-                    <label for="image">Imagen</label>
+                    <label for="image">Imagen</label></br>
                     <img class="img-fluid" src="{{$dish->image}}" style="width:70%">
                 </div>
             </div>

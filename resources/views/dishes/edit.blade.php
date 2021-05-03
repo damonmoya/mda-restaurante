@@ -62,8 +62,9 @@
             <div class="col-8">
                 <div class="form-group">
                     <label for="image">Imagen</label>
-                    <input type="file" class="form-control" id="image" name="image" value="{{ $dish->image }}" accept=".png, .jpg, .jpeg" required>
+                    <input type="file" class="form-control" id="file"  onchange="getBaseUrl()" accept=".png, .jpg, .jpeg">
                     <img src="{{$dish->image}}" class="img-fluid">
+                    <input type="hidden" id="image" name="image" value="{{$dish->image}}">
                 </div>
             </div>
         </div>
@@ -74,3 +75,17 @@
     </form>
     </div>
 @endsection
+
+<script>
+  function getBaseUrl ()  {
+    var image = document.querySelector('#image64')
+    var file = document.querySelector('input[type=file]')['files'][0];
+    var reader = new FileReader();
+    var baseString;
+    reader.onloadend = function () {
+        baseString = reader.result;
+        document.getElementById("image").value = baseString;
+    };
+    reader.readAsDataURL(file);
+}
+</script>
