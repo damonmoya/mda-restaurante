@@ -16,11 +16,11 @@ class CreateProductosPedidoTable extends Migration
         Schema::create('_productos_pedido', function (Blueprint $table) {
             $table->id('id');
 
-            $table->integer('idOrder');
-            $table->foreign('idOrder')->references('idOrder')->on('pedidos'); #fk
+            $table->integer('idOrder')->nullable();
+            $table->foreign('idOrder')->references('idOrder')->on('pedidos')->onDelete('set null')->onUpdate('cascade'); #fk
             /* id+idOrder => pk */
-            $table->integer('idProduct');
-            $table->foreign('idProduct')->references('idProduct')->on('productos');; #fk
+            $table->integer('idProduct')->nullable();
+            $table->foreign('idProduct')->references('idProduct')->on('productos')->onDelete('set null')->onUpdate('cascade'); #fk
             $table->double('price', 4, 3);
             $table->double('discount', 4, 3);
             $table->timestamps();

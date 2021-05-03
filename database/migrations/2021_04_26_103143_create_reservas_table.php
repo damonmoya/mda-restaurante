@@ -15,9 +15,9 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id('idReservation'); #pk
-            $table->integer('idClient');
-            $table->foreign('idClient')->references('id')->on('users');
-            $table->integer('idTable');
+            $table->integer('idClient')->nullable();
+            $table->foreign('idClient')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+            $table->integer('idTable')->nullable();
             $table->foreign('idTable')->references('idTable')->on('mesas');
             $table->date('date');
             $table->timestamps();

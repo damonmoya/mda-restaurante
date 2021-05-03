@@ -30,7 +30,7 @@
                 <td>{{ $dish->name }}</td>
                 <td>{{ $dish->category }}</td>
                 <td>{{ $dish->ingredients }}</td>
-                <td>{{ $dish->price }}</td>
+                <td>{{ $dish->price }} €</td>
                 <td>
                     <form action="{{ route('dishes.destroy', [$dish->idProduct]) }}" method="POST">
                         {{ method_field('DELETE') }}

@@ -17,12 +17,12 @@ class CreateFacturasTable extends Migration
             $table->id('idInvoice');
             
             # FK con id del cliente que hace el pedido
-            $table->integer('idClient');
-            $table->foreign('idClient')->references('id')->on('users'); 
+            $table->integer('idClient')->nullable();
+            $table->foreign('idClient')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade'); 
 
             # FK con id del pedido
-            $table->integer('idOrder');
-            $table->foreign('idOrder')->references('idOrder')->on('pedidos'); 
+            $table->integer('idOrder')->nullable();
+            $table->foreign('idOrder')->references('idOrder')->on('pedidos')->onDelete('set null')->onUpdate('cascade'); 
                         
             $table->date('date_invoice'); # Fecha de expedición de factura
             $table->decimal('cost'); # Coste total de la factura

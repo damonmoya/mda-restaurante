@@ -17,8 +17,8 @@ class CreatePedidosTable extends Migration
             $table->id('idOrder'); #pk
             
             # FK con id del cliente que hace el pedido
-            $table->integer('idClient');
-            $table->foreign('idClient')->references('id')->on('users'); 
+            $table->integer('idClient')->nullable();
+            $table->foreign('idClient')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade'); 
 
             /* Pedido se compone de Productos ¿Cómo? Usando entradas en tabla '_productos_pedido' */
                         

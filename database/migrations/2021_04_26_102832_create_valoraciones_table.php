@@ -15,10 +15,10 @@ class CreateValoracionesTable extends Migration
     {
         Schema::create('valoraciones', function (Blueprint $table) {
             $table->id('idRating'); #pk
-            $table->integer('idClient');
-            $table->foreign('idClient')->references('id')->on('users')->nullable(false);
-            $table->integer('idOrder');
-            $table->foreign('idOrder')->references('idOrder')->on('Pedidos')->nullable(false);
+            $table->integer('idClient')->nullable();
+            $table->foreign('idClient')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
+            $table->integer('idOrder')->nullable();
+            $table->foreign('idOrder')->references('idOrder')->on('Pedidos')->onDelete('set null')->onUpdate('cascade');
             $table->integer('rating');
             $table->string('comment');
             $table->timestamps();

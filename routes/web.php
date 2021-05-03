@@ -24,8 +24,6 @@ Route::get('/', function () {
 })->name('home');
 
 Route::resource('users', UserController::class);
-Route::resource('pedido', PedidoController::class);
-Route::resource('mesa', MesaController::class);
 
 Route::get('/register', 'App\Http\Controllers\RegistrationController@create')->name('register_form');
 Route::post('register', 'App\Http\Controllers\RegistrationController@store')->name('register_send');
