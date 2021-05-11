@@ -4,6 +4,13 @@
 
 @section('content')
     <div class="container">
+
+    @if ( \Session::has('success') )
+        <div class="alert alert-success alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>¡Se ha añadido <strong> {{ \Session::get('success') }}</strong> correctamente!</div>
+    @endif
+
     <h3>Entrantes</h3>
     <div class="row">
         @foreach($entrantes as $entrante)
@@ -16,7 +23,8 @@
                         <h5 class="card-title">{{ $entrante->name }}</h5>
                         <p class="card-text">{{ $entrante->ingredients }} </p>
 
-                        <form>
+                        <form method="POST" action="{{route('cart.store')}}">
+                            @csrf
                             <div class="form-group">
                                 <!--<label for="id">ID</label>-->
                                 <input type="hidden" value="{{ $entrante->idProduct }}" name="id" class="form-control" id="id">
@@ -53,7 +61,8 @@
                     <h5 class="card-title">{{ $pizza->name }}</h5>
                     <p class="card-text">{{ $pizza->ingredients }} </p>
 
-                    <form>
+                    <form method="POST" action="{{route('cart.store')}}">
+                        @csrf
                         <div class="form-group">
                             <!--<label for="id">ID</label>-->
                             <input type="hidden" value="{{ $pizza->idProduct }}" name="id" class="form-control" id="id">
@@ -90,7 +99,8 @@
                     <h5 class="card-title">{{ $arroz->name }}</h5>
                     <p class="card-text">{{ $arroz->ingredients }} </p>
 
-                    <form>
+                    <form method="POST" action="{{route('cart.store')}}">
+                        @csrf
                         <div class="form-group">
                             <!--<label for="id">ID</label>-->
                             <input type="hidden" value="{{ $arroz->idProduct }}" name="id" class="form-control" id="id">
@@ -127,7 +137,8 @@
                     <h5 class="card-title">{{ $ensalada->name }}</h5>
                     <p class="card-text">{{ $ensalada->ingredients }} </p>
 
-                    <form>
+                    <form method="POST" action="{{route('cart.store')}}">
+                        @csrf
                         <div class="form-group">
                             <!--<label for="id">ID</label>-->
                             <input type="hidden" value="{{ $ensalada->idProduct }}" name="id" class="form-control" id="id">
@@ -164,7 +175,8 @@
                     <h5 class="card-title">{{ $pasta->name }}</h5>
                     <p class="card-text">{{ $pasta->ingredients }} </p>
 
-                    <form>
+                    <form method="POST" action="{{route('cart.store')}}">
+                        @csrf
                         <div class="form-group">
                             <!--<label for="id">ID</label>-->
                             <input type="hidden" value="{{ $pasta->idProduct }}" name="id" class="form-control" id="id">
@@ -201,7 +213,8 @@
                         <h5 class="card-title">{{ $postre->name }}</h5>
                         <p class="card-text">{{ $postre->ingredients }} </p>
 
-                        <form>
+                        <form method="POST" action="{{route('cart.store')}}">
+                            @csrf
                             <div class="form-group">
                                 <!--<label for="id">ID</label>-->
                                 <input type="hidden" value="{{ $postre->idProduct }}" name="id" class="form-control" id="id">
@@ -238,7 +251,8 @@
                     <h5 class="card-title">{{ $bebida->name }}</h5>
                     <p class="card-text">{{ $bebida->ingredients }} </p>
 
-                    <form>
+                    <form method="POST" action="{{route('cart.store')}}">
+                        @csrf
                         <div class="form-group">
                             <!--<label for="id">ID</label>-->
                             <input type="hidden" value="{{ $postre->idProduct }}" name="id" class="form-control" id="id">

@@ -42,6 +42,14 @@ html {
     font-size: 80%;
   }
 
-  .fixed{
-    width: 400px;
+.fixed{
+  width: 400px;
+}
+
+.pedido-content{
+  background-image: url("../assets/imgs/fondo-pedido.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
 }

@@ -5,7 +5,7 @@
 @section('content')
 
     @if ( isset($message_requirelog) )
-        <div class="alert alert-warning alert-dismissable"">
+        <div class="alert alert-warning alert-dismissable">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <strong>Por favor</strong>, {{$message_requirelog}}</div>
     @endif

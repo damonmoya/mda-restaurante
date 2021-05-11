@@ -35,9 +35,4 @@ html {
     font-size: 80%;
   }
 
-  p.card-text{
-    font-size:19px;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-    overflow: hidden;
-}
+  
