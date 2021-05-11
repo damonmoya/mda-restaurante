@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pedido;
+use Darryldecode\Cart\Cart;
+
 
 class PedidoController extends Controller
 {
@@ -20,15 +22,26 @@ class PedidoController extends Controller
         }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function create(Request $request)
     {
-        // return View::make('prueba.create');
-        return view('pedidos.CRU')->with('action', 'create');
+
+        $items = \Cart::getContent();
+    
+        $array = array(
+            "name" => $request->name,
+            "surname" => $request->surname,
+            "direccion" => $request->address,
+            "email" => $request->mail,
+            "phone" => $request->phone,
+            "items" => $items = \Cart::getContent(),
+        );
+
+        dd($array);
+
+        // view the cart items
+        // $pedidos = Pedido::all();
+        // dd($pedidos);
+        return redirect()->back();
     }
 
     /**

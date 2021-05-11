@@ -41,3 +41,4 @@ Route::resource('dishes', 'App\Http\Controllers\DishesController');
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
 
 Route::get('/pedido', 'App\Http\Controllers\PedidoController@index')->name('pedido');
+Route::put('pedido', 'App\Http\Controllers\PedidoController@create')->name('create_pedido');

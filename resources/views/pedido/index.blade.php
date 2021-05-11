@@ -48,8 +48,9 @@
                     <div class="container pedido-form">
                         <h4>Confirmar datos usuario</h4>
 
-                        {{--Sección de formulario--}}
-                        <form>
+                        {{-- Sección de formulario para confirmar pedido --}}
+                        <form method="POST" action="{{route('create_pedido')}}">
+                            @csrf
                             <fieldset style="border:none;">
                                 {{ method_field('PUT') }}
                                     {{ csrf_field() }}
@@ -101,15 +102,13 @@
                             
                             <div class="row">
                                 <div class="col">
-                                    <button type="button" width="100%" class="btn btn-primary btn-lg btn-block">Confirmar pedido</button>
+                                    <button type="submit" width="100%" class="btn btn-primary btn-lg btn-block">Confirmar y realizar pedido</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 @endif
             </div>
-
-                
         </div>
     </body>
 </html>
