@@ -64,7 +64,7 @@ class BooksController extends Controller
     public function show($id)
     {
         $book = Reserva::findOrFail($id);
-        return view('books.show', compat('book'))
+        return view('books.show', compact('book'));
     }
 
     /**
