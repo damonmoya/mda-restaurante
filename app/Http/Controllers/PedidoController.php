@@ -7,15 +7,17 @@ use App\Models\Pedido;
 
 class PedidoController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $pedidos = Pedido::all();
-        return view('pedidos.index')->with('pedidos', $pedidos);
+
+        if (auth()->check()){
+            $user = auth()->user();
+            return view('pedido.index')->with('pedidos', $pedidos);
+        } else {
+            $message_requirelog = 'inicie sesión para realizar pedidos a domicilo';
+            return view('sessions.create')->with('message_requirelog', $message_requirelog);
+        }
     }
 
     /**

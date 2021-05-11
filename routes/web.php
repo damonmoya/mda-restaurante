@@ -36,3 +36,5 @@ Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy')->name('
 Route::resource('dishes', 'App\Http\Controllers\DishesController');
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
+
+Route::get('/pedido', 'App\Http\Controllers\PedidoController@index')->name('pedido');
