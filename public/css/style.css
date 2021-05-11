@@ -53,3 +53,15 @@ html {
   background-attachment: fixed;
   color: white;
 }
+
+.pedido-container{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  padding: 0.5em;
+}
+
+.pedido-form{
+  background-color: rgba(29, 25, 25, 0.849);
+  padding: 0.5em;
+}

@@ -5,10 +5,12 @@
 @section('content')
 <html>
     <body class="pedido-content">
-        <div class="row row-cols-6">
-            <div class="col-7">
-                <h1>Pedido</h1>        
-                @if (!Cart::isEmpty())
+        
+        <div class="pedido-container">
+                
+            <div>
+                <h1>Pedido</h1>  
+            @if (!Cart::isEmpty())
                     <table class="table table-dark table-striped">
                         <thead class="thead-dark">
                             <tr>
@@ -39,10 +41,11 @@
                     </table>
                 @endif
             </div>
-            <div class="col-5">
+
+            <div>
                 @if (auth()->check())
                     <?php $user = auth()->user(); ?>
-                    <div class="container">
+                    <div class="container pedido-form">
                         <h4>Confirmar datos usuario</h4>
 
                         {{--Sección de formulario--}}
@@ -104,7 +107,9 @@
                         </form>
                     </div>
                 @endif
-          </div>
+            </div>
+
+                
         </div>
     </body>
 </html>
