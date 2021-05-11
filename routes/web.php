@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BooksController;
 // use App\Http\Controllers\RegistrationController;
 // use App\Http\Controllers\SessionsController;
 // use App\Http\Controllers\DishesController;
@@ -36,3 +37,7 @@ Route::get('/logout', 'App\Http\Controllers\SessionsController@destroy')->name('
 Route::resource('dishes', 'App\Http\Controllers\DishesController');
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
+
+
+Route::resource('books', BooksController::class);
+
