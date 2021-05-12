@@ -17,13 +17,13 @@ class ReservaSeeder extends Seeder
         DB::table('reservas')->insert([
             'idClient' => 01,
             'idTable' => 02,
-            'date' => "2021-11-15 02:20:00",
+            'date' => "2021-05-25T09:37",
         ]);
 
         DB::table('reservas')->insert([
-            'idClient' => 01,
-            'idTable' => 03,
-            'date' => "2022-01-15 02:00:00",
+            'idClient' => 02,
+            'idTable' => 05,
+            'date' => "2021-05-29T12:45",
         ]);
     }
 }

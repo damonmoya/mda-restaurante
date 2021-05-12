@@ -5,14 +5,13 @@
 @section('content')
     <div class="container">
     <h1 class="mb-3">Usuarios</h1>
+    <a href="{{ route('users.create') }}" class="btn btn-primary">Nuevo usuario</a>
 
     @if ($users->isNotEmpty())
         <table class="table">
             <thead class="thead-dark">
                 <div class="form-group mt-2 mt-md-0 mb-3 row">
-                    <div class="col-10">  
-                        <a href="{{ route('users.create') }}" class="btn btn-primary">Nuevo usuario</a>
-                    </div>
+                    
                 </div>
                 <tr>
                     <th scope="col">ID</th>
