@@ -50,15 +50,23 @@ class BooksController extends Controller
             'time.required' => 'El campo hora es obligatorio',
             'table.required' => 'El campo mesa es obligatorio',
             'comments.max' => 'El campo comentario no puede tener mas de 500 caracteres',
-        ]);
-        // Reserva::create($request->all());
+            ]);
+            // Reserva::create($request->all());
+        $res = Reserva::where('date', $request->date)->get();
         $time = $request->time;
-        $reserva = new Reserva();
-        $reserva->idClient = 1;
-        $reserva->idTable = 2;
-        $reserva->date = $request->date;
-        $reserva->$time = 1;
-        $reserva->save();
+        if (count($res->toArray()) == 0) {
+            $reserva = new Reserva();
+            $reserva->$time = 1;
+            $reserva->idClient = 1; //auth()->user()->idClient;
+            $reserva->idTable = 1;
+            $reserva->date = $request->date;
+            $reserva->save();
+        } else {
+            $reserva = $res->firstWhere('date', $request->date);
+            $reserva->$time = 1;
+            $reserva->update();
+            // $book = Book.
+        }
         return redirect()->route('home');
     }
 
@@ -126,5 +134,8 @@ class BooksController extends Controller
         }
         // return $horas_libres;
         return response()->json($horas_libres, 200);
+    }
+
+    public function getFreeTables() {
     }
 }

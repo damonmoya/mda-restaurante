@@ -60,10 +60,6 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-
-    Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
-
-
 });
 
 
@@ -73,8 +69,10 @@ Route::post('register', 'App\Http\Controllers\RegistrationController@store')->na
 Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('login_form');
 Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
 
+Route::resource('bookings', 'App\Http\Controllers\BookingsController');
+Route::resource('books', 'App\Http\Controllers\BooksController');
 
-
-
+Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
 Route::get('/getBooks/{date}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
+Route::get('/getFreeTables/{date}', 'App\Http\Controllers\BooksController@getFreeTables')->name('getBooks');
 

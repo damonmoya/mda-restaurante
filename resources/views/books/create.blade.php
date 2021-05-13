@@ -23,7 +23,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="date">Fecha:</label>
-                    <input type="date" class="form-control" id="date" name="date" min="" max="" onchange="getFreeDays()" value="{{ old('date') }}" required>
+                    <input type="date" class="form-control" id="date" name="date" onchange="getFreeDays()" value="{{ old('date') }}" required>
                 </div>
             </div>
             <div class="col-6">
@@ -73,13 +73,17 @@
     var dd = date.getDate();
     var mm = date.getMonth()+1; //January is 0!
     var yyyy = date.getFullYear();
-    var today = yyyy+'-'+mm+'-'+dd; 
     if (mm < 10) {
-        var today = yyyy+'-'+0mm+'-'+dd; 
+        mm = '0'+mm 
     } 
+    if (dd < 10) {
+        dd = '0'+dd
+    }
+    var today = yyyy+'-'+mm+'-'+dd; 
 
-    console.log(date.toS);
-    document.getElementById('date').setAttribute('min', '2021-05-13')
+    console.log(today);
+    document.getElementById('date').setAttribute('min', today)
+
     function getFreeDays() {
         var date = document.getElementById('date').value
         var ajax = new XMLHttpRequest();
@@ -121,7 +125,16 @@
     }
 
     function getFreeTables() {
-        
+        var date = document.getElementById('date').value
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                
+            }
+        }
+        ajax.open("get", "/getFreeTables/" + date, true);
+        ajax.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+        ajax.send();
     }
 
 </script>
