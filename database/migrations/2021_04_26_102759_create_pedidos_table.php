@@ -23,12 +23,13 @@ class CreatePedidosTable extends Migration
             /* Pedido se compone de Productos ¿Cómo? Usando entradas en tabla '_productos_pedido' */
                         
             $table->date('date_send'); # Fecha de envío del pedido
+            $table->date('date_delivery'); # Fecha de entrega del pedido
             $table->string('address'); # Dirección del envío
             $table->decimal('cost'); # Coste total del pedido 
 
             $table->timestamps();
         });
-    }
+        }
 
     /**
      * Reverse the migrations.

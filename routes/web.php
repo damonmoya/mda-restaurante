@@ -42,3 +42,4 @@ Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
 
 Route::get('/pedido', 'App\Http\Controllers\PedidoController@index')->name('pedido');
 Route::put('pedido', 'App\Http\Controllers\PedidoController@create')->name('create_pedido');
+Route::POST('/pedido/delete', 'App\Http\Controllers\PedidoController@destroy')->name('delete_pedido');

@@ -5,17 +5,34 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pedido;
 use Darryldecode\Cart\Cart;
+use Darryldecode\Cart\CartCondition;
+use Illuminate\Support\Facades\DB;
 
 
 class PedidoController extends Controller
 {
     public function index()
     {
-        $pedidos = Pedido::all();
+        // $pedidos = Pedido::all();
 
-        if (auth()->check()){
-            $user = auth()->user();
-            return view('pedido.index')->with('pedidos', $pedidos);
+        if (auth()->check()) {
+
+            $userId = auth()->user()->id;
+            $date_actual = date("Y-m-d H:i"); // Fecha actual
+            // Query para seleccionar de la BD las entradas de pedidos en curso (date_delivery > date_actual)
+            $query_actual = "SELECT * FROM pedidos 
+                             WHERE idClient == " . $userId . " AND date_delivery > '" . $date_actual . "'";
+            // Query para seleccionar de la BD las entradas de pedidos anteriores
+            $query_historic = "SELECT * FROM pedidos 
+                               WHERE idClient == " . $userId . " AND date_delivery <= '" . $date_actual . "'";
+
+            // Consultas a la DB
+            $pedidos_actual   = DB::select($query_actual);
+            $pedidos_historic = DB::select($query_historic);
+
+            $data = [$pedidos_actual, $pedidos_historic];
+            return view('pedido.index')->with('data', $data);
+
         } else {
             $message_requirelog = 'inicie sesión para realizar pedidos a domicilo';
             return view('sessions.create')->with('message_requirelog', $message_requirelog);
@@ -24,9 +41,10 @@ class PedidoController extends Controller
 
     public function create(Request $request)
     {
+        // $items = \Cart::getContent();
+        // $pedidos = Pedido::all();
+        // dd($pedidos);
 
-        $items = \Cart::getContent();
-    
         $array = array(
             "name" => $request->name,
             "surname" => $request->surname,
@@ -36,84 +54,60 @@ class PedidoController extends Controller
             "items" => $items = \Cart::getContent(),
         );
 
-        dd($array);
+        $pedido = new Pedido;
+        $pedido->idClient = auth()->user()->id;
+        $pedido->date_send = date("Y-m-d H:i");
+        //$pedido->date_delivery = date("d-m-Y H:i:s", strtotime(date("d-m-Y H:i")."+ 1 hour"));
+        $pedido->date_delivery = str_replace("T", " ", $request->date_delivery);
+        $pedido->address = $request->address;
+        $pedido->cost = $request->total;
 
-        // view the cart items
-        // $pedidos = Pedido::all();
-        // dd($pedidos);
-        return redirect()->back();
+        $pedido->save();
+
+        \Cart::clear();
+
+        return redirect()->back()->with('success_create_order', $request->name);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        $request->validate([
-            // 'title' => 'required',
-            // 'description' => 'required',
-        ]);
-        
-        // Prueba::create($request->all());
-        return Redirect::to('pedidos');
+        // $request->validate([
+        //     // 'title' => 'required',
+        //     // 'description' => 'required',
+        // ]);
+
+        // // Prueba::create($request->all());
+        // return Redirect::to('pedidos');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
-        $pedido = Pedido::find($id);
-        return view('prueba.CRU')->with('pedido', $pedido, 'action', 'show');
+        // $pedido = Pedido::find($id);
+        // return view('prueba.CRU')->with('pedido', $pedido, 'action', 'show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $pedido = Pedido::find($id);
-        return view('pedidos.CRU')->with('pedido', $pedido, 'action', 'edit');
+        // $pedido = Pedido::find($id);
+        // return view('pedidos.CRU')->with('pedido', $pedido, 'action', 'edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $request->validate([
-            // 'title' => 'required',
-            // 'description' => 'required',
-        ]);
-        
-        $pedido::find($id);
-        $pedido->update($request->all());
-        return Redirect::to('pedido');
+        // $request->validate([
+        //     // 'title' => 'required',
+        //     // 'description' => 'required',
+        // ]);
+
+        // $pedido::find($id);
+        // $pedido->update($request->all());
+        // return Redirect::to('pedido');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $pedido = Prueba::find($id);
+        $pedido = Pedido::find($request->idOrder);
         $pedido->delete();
-        return Redirect::to('pruebas');
+        return redirect()->back()->with('success_deleted_order', true);
     }
 }
