@@ -41,3 +41,5 @@ Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
 
 Route::resource('books', BooksController::class);
 
+Route::get('/getBooks/{date}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
+

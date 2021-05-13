@@ -21,10 +21,11 @@
             <div class="col-6">
               <div class="form-group">
                     <label for="category">Hora</label>
-                    // @if ($book->time == "18:00-19:00") selected @endif 
                     <select class="form-control" name="time" id="time" aria-label="Default select example">
-                      <option value="18:00-19:00" @if ($book->time == "18:00-19:00") selected @endif>18:00-19:00</option>
-                      <option value="19:00-20:00" @if ($book->time == "19:00-20:00") selected @endif>19:00-20:00</option>
+                      <option value="12:00-13:00" @if ($book->time == "12:00-13:00") selected @endif>12:00-13:00</option>
+                      <option value="13:00-14:00" @if ($book->time == "13:00-14:00") selected @endif>13:00-14:00</option>
+                      <option value="14:00-15:00" @if ($book->time == "14:00-15:00") selected @endif>14:00-15:00</option>
+                      <option value="15:00-16:00" @if ($book->time == "15:00-16:00") selected @endif>15:00-16:00</option>
                       <option value="20:00-21:00" @if ($book->time == "20:00-21:00") selected @endif>20:00-21:00</option>
                       <option value="21:00-22:00" @if ($book->time == "21:00-22:00") selected @endif>21:00-22:00</option>
                       <option value="22:00-23:00" @if ($book->time == "22:00-23:00") selected @endif>22:00-23:00</option>

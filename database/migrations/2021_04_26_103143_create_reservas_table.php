@@ -20,7 +20,16 @@ class CreateReservasTable extends Migration
             $table->integer('idTable')->nullable();
             $table->foreign('idTable')->references('idTable')->on('mesas');
             $table->date('date');
-            $table->timestamps();
+            $table->boolean('12:00-13:00')->default(false);
+            $table->boolean('13:00-14:00')->default(false);
+            $table->boolean('14:00-15:00')->default(false);
+            $table->boolean('15:00-16:00')->default(false);
+            $table->boolean('20:00-21:00')->default(false);
+            $table->boolean('21:00-22:00')->default(false);
+            $table->boolean('22:00-23:00')->default(false);
+            $table->boolean('23:00-00:00')->default(false);
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

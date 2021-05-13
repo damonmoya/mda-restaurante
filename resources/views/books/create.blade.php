@@ -23,19 +23,19 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="date">Fecha:</label>
-                    <input type="date" class="form-control" id="date" name="date" min="" max="" value="{{ old('date') }}" required>
+                    <input type="date" class="form-control" id="date" name="date" min="" max="" onchange="getFreeDays()" value="{{ old('date') }}" required>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <label for="time" class="form-label">Hora:</label>
-                    <select class="form-control" name="time" id="time" aria-label="Default select example">
-                      <option value="18:00-19:00" selected>18:00-19:00</option>
-                      <option value="19:00-20:00">19:00-20:00</option>
-                      <option value="20:00-21:00">20:00-21:00</option>
-                      <option value="21:00-22:00">21:00-22:00</option>
-                      <option value="22:00-23:00">22:00-23:00</option>
-                      <option value="23:00-00:00">23:00-00:00</option>
+                    <label for="table">Mesa para:</label>
+                    <select class="form-control" name="table" id="table"  onchange="getFreeTables()" aria-label="Default select example">
+                      <option value="1" selected>1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
+                      <option value="5">5</option>
+                      <option value="6">6</option>
                     </select>
                 </div>
             </div>
@@ -43,14 +43,8 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label for="table">Mesa para:</label>
-                    <select class="form-control" name="table" id="table" aria-label="Default select example">
-                      <option value="1" selected>1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                      <option value="5">5</option>
-                      <option value="6">6</option>
+                    <label for="time" class="form-label">Hora:</label>
+                    <select class="form-control" name="time" id="time" aria-label="Default select example">
                     </select>
                 </div>
             </div>
@@ -71,4 +65,64 @@
     </div>
 </div>
   
+@endsection
+
+@section('scripts')
+<script>
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; //January is 0!
+    var yyyy = date.getFullYear();
+    var today = yyyy+'-'+mm+'-'+dd; 
+    if (mm < 10) {
+        var today = yyyy+'-'+0mm+'-'+dd; 
+    } 
+
+    console.log(date.toS);
+    document.getElementById('date').setAttribute('min', '2021-05-13')
+    function getFreeDays() {
+        var date = document.getElementById('date').value
+        var ajax = new XMLHttpRequest();
+        ajax.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                var res = JSON.parse(this.responseText)
+                var time = document.getElementById('time')
+                while (time.firstChild) {
+                    time.removeChild(time.firstChild);
+                }
+                for (const key in res) {
+                    var option = '<option value="' + res[key] + '">' + res[key] + '</option>';
+                    $('#time').append(option);
+                }
+            }
+        };
+        ajax.open("get", "/getBooks/" + date, true);
+        ajax.setRequestHeader("Content-Type","application/json;charset=UTF-8");
+        ajax.send();
+
+        // $.ajax({
+        //     type: 'GET',
+        //     url: '/getBooks/' + date,
+        //     success: function(res) {
+        //         console.log('bien: ' + res)
+        //         var select = document.createElement('select')
+        //         $.each(JSON.parse(res), function (i, element) {
+        //             console.log(element);
+        //             var option = '<option value="' + element + '">"' + element + '"</option>';
+        //             $('#time').append(option);
+        //         });
+        //         document.getElementById('time').firstChild().setAttribute('select');
+        //     },
+        //     fail: function(res) {
+        //         console.log('mal: ' + res)
+
+        //     }
+        // });
+    }
+
+    function getFreeTables() {
+        
+    }
+
+</script>
 @endsection

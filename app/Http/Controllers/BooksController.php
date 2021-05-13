@@ -51,7 +51,14 @@ class BooksController extends Controller
             'table.required' => 'El campo mesa es obligatorio',
             'comments.max' => 'El campo comentario no puede tener mas de 500 caracteres',
         ]);
-        Reserva::create($request->all());
+        // Reserva::create($request->all());
+        $time = $request->time;
+        $reserva = new Reserva();
+        $reserva->idClient = 1;
+        $reserva->idTable = 2;
+        $reserva->date = $request->date;
+        $reserva->$time = 1;
+        $reserva->save();
         return redirect()->route('home');
     }
 
@@ -64,7 +71,7 @@ class BooksController extends Controller
     public function show($id)
     {
         $book = Reserva::findOrFail($id);
-        return view('books.show', compat('book'))
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -101,5 +108,23 @@ class BooksController extends Controller
         $book = Reserva::findOrFail($id);
         $book->delete();
         return redirect()->route('books.index');
+    }
+
+    public function getBooks($date) {
+        $horas_libres = array();
+        $res = Reserva::where('date', $date)->get();
+        if (count($res->toArray()) == 0) {
+            $horas_libres = ['12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '20:00-21:00', '21:00-22:00', '22:00-23:00', '23:00-00:00',];
+        } else {
+            foreach (($res->toArray()[0]) as $field => $value) {
+                // dd($res->toArray());
+                if ($value == 0) {
+                    array_push($horas_libres, $field);
+                }
+            }
+            // dd($horas_libres);
+        }
+        // return $horas_libres;
+        return response()->json($horas_libres, 200);
     }
 }
