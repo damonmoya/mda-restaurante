@@ -41,7 +41,7 @@
               <a class="nav-link" href="{{ route('books.create') }}">Reservar<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('books.index') }}">Mis Reservas<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('bookings.index') }}">Mis Reservas<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
