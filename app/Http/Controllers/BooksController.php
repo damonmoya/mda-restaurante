@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reserva;
 use App\Models\Mesa;
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 
 class BooksController extends Controller
@@ -16,8 +17,12 @@ class BooksController extends Controller
      */
     public function index()
     {
-        $books = Reserva::all();
-        return view('books.index', compact('books'));
+        if (auth()->user()->hasrole('Administrator')){
+            $books = Reserva::all();
+        } else {
+            $books = Reserva::where('idClient', auth()->user()->id)->get();
+        }
+            return view('books.index', compact('books'));
     }
 
     /**
@@ -27,8 +32,12 @@ class BooksController extends Controller
      */
     public function create()
     {
-        return view('books.create');
-        
+        if (auth()->user()->hasrole('Administrator')) {
+            $users = User::all();
+            $mesas = Mesa::all();
+            return view('books.adminNew', compact('users','mesas'));
+        }
+            return view('books.create');
     }
 
     /**
@@ -58,6 +67,7 @@ class BooksController extends Controller
         $reserva->idClient = auth()->user()->id;
         $reserva->idTable = $request->idTable;
         $reserva->date = $request->date;
+        $reserva->time = $request->time;
         $reserva->save();
         
         $res = DB::table('reservas_mesas')->where('date', $request->date)->where('idTable', $request->idTable)->first();
@@ -65,14 +75,12 @@ class BooksController extends Controller
 
         if ($res == null) {
             DB::table('reservas_mesas')->insert([
-                'idBook' => $reserva->idReservation,
                 'idTable' => $request->idTable,
                 'date' => $request->date,
                 $time => 1
             ]);
         } else {
             DB::table('reservas_mesas')->where('date', $request->date)->where('idTable', $request->idTable)->update([$time => 1]);
-            //$res->update();
         }
         return redirect()->route('home');
     }
@@ -86,30 +94,9 @@ class BooksController extends Controller
     public function show($id)
     {
         $book = Reserva::findOrFail($id);
-        return view('books.show', compact('book'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        $capacity = Mesa::findOrFail($book->idTable)->capacity;
+        $user = User::findOrFail($book->idClient);
+        return view('books.show', compact('book', 'capacity', 'user'));
     }
 
     /**
@@ -121,6 +108,7 @@ class BooksController extends Controller
     public function destroy($id)
     {
         $book = Reserva::findOrFail($id);
+        DB::table('reservas_mesas')->where('date', $book->date)->where('idTable', $book->idTable)->update([$book->time => false]);
         $book->delete();
         return redirect()->route('books.index');
     }
@@ -129,8 +117,6 @@ class BooksController extends Controller
         $horas_libres = array();
         $final = array();
         $res = DB::table('reservas_mesas')->join('mesas', 'mesas.idTable', 'reservas_mesas.idTable')->where('capacity', $diners)->where('date', $date)->get();
-        // dd($res);
-        //$res = Reserva::where('date', $date)->get();
         if (count($res->toArray()) == 0) {
             $final[0] = ['12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '20:00-21:00', '21:00-22:00', '22:00-23:00', '23:00-00:00'];
             $final[1] = Mesa::firstWhere('capacity', $diners)->idTable;
@@ -142,7 +128,6 @@ class BooksController extends Controller
             foreach (($res->toArray()) as $field => $record) {
 
                 foreach ($record as $field => $value) {
-                    // dd($res->toArray());
                     if ($value == 0) {
                         array_push($aux, $field);                        
                     }
@@ -163,7 +148,6 @@ class BooksController extends Controller
             if (count($horas_libres) < 1){
                 $tablesIDs = DB::table('reservas_mesas')->pluck('idTable')->all();
                 $final[1] = Mesa::whereNotIn('idTable', $tablesIDs)->where('capacity', $diners)->first();
-                // dd($final[1]);
                 if ($final[1] == null){
                     $final[0] = ['No hay horas disponibles'];
                 } else {
@@ -177,8 +161,5 @@ class BooksController extends Controller
             
         }
         return response()->json($final, 200);
-    }
-
-    public function getFreeTables() {
     }
 }

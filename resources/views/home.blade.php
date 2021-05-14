@@ -20,7 +20,7 @@
         <div class="carousel-item">
           <img class="d-block w-100" src="/images/slide-5.jpg" alt="Second slide" width=300 height=771>
           <div class="carousel-caption d-md-block">
-            <h5 class="carousel-imgDesc">El horario podría cambiar:<br>Lunes: 12:00–16:00</br>Martes: 12:00–16:00 / 20:00–24:00<br>Miércoles: 12:00–16:00 / 20:00–24:00</br>Jueves: 12:00–16:00 / 20:00–24:00<br>Viernes: 12:00–16:00 / 20:00–24:00</br>Sábado: 12:00–16:00 / 20:00–24:00<br>Domingo:12:00–16:00 / 20:00–24:00</br></h5>
+            <h5 class="carousel-imgDesc">El horario podría cambiar:<br>De lunes a domingo de: 12:00 a 16:00  y de 20:00 a 00:00</h5>
           </div>
         </div>
         <div class="carousel-item">

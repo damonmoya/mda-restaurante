@@ -32,7 +32,6 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('users', UserController::class, ['except' => 'show']);
         Route::resource('dishes', 'App\Http\Controllers\DishesController', ['except' => 'show']);
-        Route::resource('books', BooksController::class, ['except' => 'show']);
     
     });
     
@@ -44,23 +43,9 @@ Route::middleware('auth')->group(function () {
         });
     });
 
-    Route::prefix('dishes')->group(function () {
-        Route::name('dishes.')->group(function () {
-            Route::get('{dish}', 'App\Http\Controllers\DishesController@show') 
-                ->where('dish', '[0-9]+')
-                ->name('show');
-        });
-    });
+    Route::resource('books', 'App\Http\Controllers\BooksController')->except(['update', 'edit']);
 
-    Route::prefix('books')->group(function () {
-        Route::name('books.')->group(function () {
-            Route::get('{book}', 'App\Http\Controllers\BooksController@show') 
-                ->where('book', '[0-9]+')
-                ->name('show');
-        });
-    });
-
-    Route::resource('books', 'App\Http\Controllers\BooksController');
+    Route::get('/getBooks/{date}/{diners}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
 
 });
 
@@ -74,6 +59,12 @@ Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('log
 Route::resource('bookings', 'App\Http\Controllers\BookingsController');
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
-Route::get('/getBooks/{date}/{diners}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
-Route::get('/getFreeTables/{date}', 'App\Http\Controllers\BooksController@getFreeTables')->name('getBooks');
+
+Route::prefix('dishes')->group(function () {
+    Route::name('dishes.')->group(function () {
+        Route::get('{dish}', 'App\Http\Controllers\DishesController@show') 
+            ->where('dish', '[0-9]+')
+            ->name('show');
+    });
+});
 

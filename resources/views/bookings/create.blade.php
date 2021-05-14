@@ -19,7 +19,7 @@
     @endif
 
     {{--Sección de formulario--}}
-    <form method="POST" action="{{ route('bookings.store') }}">
+    <form method="POST" action="{{ route('books.store') }}">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-4">
@@ -55,7 +55,7 @@
     </form>
 
     <p>
-        <a href="{{ route('bookings.index') }} " class="btn btn-outline-primary">Regresar al listado de reservas</a>
+        <a href="{{ route('books.index') }} " class="btn btn-outline-danger">Regresar al listado de reservas</a>
     </p>
     </div>    
 @endsection

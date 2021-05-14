@@ -70,7 +70,11 @@
       </fieldset>
     </form>
     <p>
-        <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar a listado de platos</a>
+        @hasrole('Administrator')
+            <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar al listado de platos</a>
+        @else
+            <a href="{{ route('menu') }} " class="btn btn-outline-danger">Regresar al menú</a>
+        @endhasrole
     </p>
     </div>
 @endsection

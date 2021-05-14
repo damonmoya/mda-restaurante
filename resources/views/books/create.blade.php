@@ -57,7 +57,7 @@
         </div>
         <div class="form-group">
             <button style="cursor:pointer" type="submit" id="confirm" name="confirm" class="btn btn-primary">Confirmar</button>
-            <a href="{{ route('home') }} " class="btn btn-outline-primary">Canselar</a>
+            <a href="{{ route('home') }} " class="btn btn-outline-danger">Cancelar</a>
         </div>
     </form>
     </div>

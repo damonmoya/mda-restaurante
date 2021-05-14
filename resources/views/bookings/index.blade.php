@@ -17,6 +17,7 @@
                     <th scope="col">ID</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">Mesa</th>
+                    <th scope="col">Fecha</th>
                     <th scope="col">Hora</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -27,7 +28,8 @@
                 <th scope="row">{{ $book->idReservation }}</th>
                 <td>{{ $book->user->name }}</td>
                 <td>{{ $book->idTable }}</td>
-                <td>{{ $book->date }}</td>
+                <td>{{ date_format(date_create($book->date), 'd/m/Y') }}</td>
+                <td>{{ $book->time }}</td>
                 <td>
                     <form action="{{ route('bookings.destroy', [$book->idReservation]) }}" method="POST">
                         {{ method_field('DELETE') }}

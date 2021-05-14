@@ -28,7 +28,7 @@
                 <th scope="row">{{ $dish->idProduct }}</th>
                 <td>{{ $dish->name }}</td>
                 <td>{{ $dish->category }}</td>
-                <td>{{ $dish->ingredients }}</td>
+                <td class="w-25">{{ $dish->ingredients }}</td>
                 <td>{{ $dish->price }} €</td>
                 <td>
                     <form action="{{ route('dishes.destroy', [$dish->idProduct]) }}" method="POST">

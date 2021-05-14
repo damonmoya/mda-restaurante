@@ -1,10 +1,10 @@
 @extends('layout')
 
-@section('title', "Editar reserva")
+@section('title', "Crear nueva reserva")
 
 @section('content')
     <div class="container">
-    <h2>Editar reserva</h2>
+    <h2>Crear nueva reserva</h2>
 
     {{--Sección de errores--}}
     @if ($errors->any())
@@ -19,16 +19,15 @@
     @endif
 
     {{--Sección de formulario--}}
-    <form method="POST" action="{{ route('books.update', $book->idReservation) }}">
-        {{ method_field('PUT') }}
+    <form method="POST" action="{{ route('bookings.store') }}">
         {{ csrf_field() }}
         <div class="row">
             <div class="col-4">
                 <div class="form-group">
-                    <label for="idClient">Cliente</label>
+                    <label for="idClient">Nombre</label>
                     <select name="idClient" id="idClient" class="form-control">
                         @foreach($users as $user)
-                            <option value="{{ $user->id }}" {{ $user->id== $book->idClient ? 'selected' : '' }}>{{ $user->name }}</option>
+                            <option value="{{ $user->id }}">{{ $user->name }}</option>
                         @endforeach
                     </select>
                 </div>
@@ -38,20 +37,16 @@
                     <label for="idTable">Mesa</label>
                     <select name="idTable" id="idTable" class="form-control">
                         @foreach($mesas as $mesa)
-                            <option value="{{ $mesa->idTable }}" {{ $mesa->idTable== $book->idTable ? 'selected' : '' }}>Mesa {{ $mesa->idTable }}</option>
+                            <option value="{{ $mesa->idTable }}">Mesa {{ $mesa->idTable }}</option>
                         @endforeach
                     </select>
                 </div>
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-8">
-                <div class="form-group">
-                    <label for="date">Hora</label>
-                    <input type="datetime-local" class="form-control" id="date" name="date" value="{{ $book->date }}" required>
-                </div>
-            </div>
+        <div class="form-group">
+            <label for="date">Hora:</label>
+            <input type="datetime-local" class="form-control" id="date" name="date" required>
         </div>
 
         <div class="form-group">
@@ -60,7 +55,7 @@
     </form>
 
     <p>
-        <a href="{{ route('books.index') }} " class="btn btn-outline-danger">Regresar al listado de reservas</a>
+        <a href="{{ route('bookings.index') }} " class="btn btn-outline-danger">Regresar al listado de reservas</a>
     </p>
-    </div>
+    </div>    
 @endsection

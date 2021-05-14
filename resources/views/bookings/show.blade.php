@@ -51,7 +51,7 @@
     </form>
 
     <p>
-        <a href="{{ route('bookings.index') }} " class="btn btn-outline-primary">Regresar al listado de reservas</a>
+        <a href="{{ route('bookings.index') }} " class="btn btn-outline-danger">Regresar al listado de reservas</a>
     </p>
     </div>    
 @endsection
