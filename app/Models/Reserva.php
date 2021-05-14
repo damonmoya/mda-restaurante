@@ -21,6 +21,10 @@ class Reserva extends Model
         return $this->belongsTo(User::class,'idClient');
     }
 
+    public function mesas() {
+        return $this->belongsToMany(Mesa::class,'reservas_mesas','idBook','idTable');
+    }
+
     /**
      * The primary key associated with the table.
      *

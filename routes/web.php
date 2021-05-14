@@ -60,19 +60,20 @@ Route::middleware('auth')->group(function () {
         });
     });
 
+    Route::resource('books', 'App\Http\Controllers\BooksController');
+
 });
 
 
 Route::get('/register', 'App\Http\Controllers\RegistrationController@create')->name('register_form');
 Route::post('register', 'App\Http\Controllers\RegistrationController@store')->name('register_send');
 
-Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('login_form');
+Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('login');
 Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
 
 Route::resource('bookings', 'App\Http\Controllers\BookingsController');
-Route::resource('books', 'App\Http\Controllers\BooksController');
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
-Route::get('/getBooks/{date}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
+Route::get('/getBooks/{date}/{diners}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
 Route::get('/getFreeTables/{date}', 'App\Http\Controllers\BooksController@getFreeTables')->name('getBooks');
 

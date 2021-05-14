@@ -19,22 +19,20 @@
   {{--Sección de formulario--}}
     <form method="POST" action="{{ route('books.store') }}">
         {{ csrf_field() }}
+        <input type="hidden" value="" id="idTable" name="idTable">
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
                     <label for="date">Fecha:</label>
-                    <input type="date" class="form-control" id="date" name="date" onchange="getFreeDays()" value="{{ old('date') }}" required>
+                    <input type="date" class="form-control" id="date" name="date"  min="{{date('Y-m-d')}}" onchange="unlockTable()" value="{{ old('date') }}" required>
                 </div>
             </div>
             <div class="col-6">
                 <div class="form-group">
                     <label for="table">Mesa para:</label>
-                    <select class="form-control" name="table" id="table"  onchange="getFreeTables()" aria-label="Default select example">
-                      <option value="1" selected>1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
+                    <select class="form-control" name="table" id="table" onchange="getFreeDays()" aria-label="Default select example" disabled>
+                      <option value="2" selected>2</option>
                       <option value="4">4</option>
-                      <option value="5">5</option>
                       <option value="6">6</option>
                     </select>
                 </div>
@@ -58,7 +56,7 @@
             </div>
         </div>
         <div class="form-group">
-            <button style="cursor:pointer" type="submit" class="btn btn-primary">Confirmar</button>
+            <button style="cursor:pointer" type="submit" id="confirm" name="confirm" class="btn btn-primary">Confirmar</button>
             <a href="{{ route('home') }} " class="btn btn-outline-primary">Canselar</a>
         </div>
     </form>
@@ -69,72 +67,38 @@
 
 @section('scripts')
 <script>
-    var date = new Date();
-    var dd = date.getDate();
-    var mm = date.getMonth()+1; //January is 0!
-    var yyyy = date.getFullYear();
-    if (mm < 10) {
-        mm = '0'+mm 
-    } 
-    if (dd < 10) {
-        dd = '0'+dd
-    }
-    var today = yyyy+'-'+mm+'-'+dd; 
-
-    console.log(today);
-    document.getElementById('date').setAttribute('min', today)
-
     function getFreeDays() {
         var date = document.getElementById('date').value
+        var diners = document.getElementById('table').value
         var ajax = new XMLHttpRequest();
         ajax.onreadystatechange = function() {
             if (this.readyState == 4 && this.status == 200) {
                 var res = JSON.parse(this.responseText)
                 var time = document.getElementById('time')
+                var table = document.getElementById('idTable')
+                if (res[1] == null){
+                    document.getElementById('confirm').setAttribute('disabled', true)
+                }else {
+                    document.getElementById('confirm').removeAttribute('disabled')
+                    table.value = res[1]
+                }
                 while (time.firstChild) {
                     time.removeChild(time.firstChild);
                 }
-                for (const key in res) {
-                    var option = '<option value="' + res[key] + '">' + res[key] + '</option>';
+                for (const key in res[0]) {
+                    var option = '<option value="' + res[0][key] + '">' + res[0][key] + '</option>';
                     $('#time').append(option);
                 }
             }
         };
-        ajax.open("get", "/getBooks/" + date, true);
+        ajax.open("get", "/getBooks/" + date + "/" + diners, true);
         ajax.setRequestHeader("Content-Type","application/json;charset=UTF-8");
         ajax.send();
-
-        // $.ajax({
-        //     type: 'GET',
-        //     url: '/getBooks/' + date,
-        //     success: function(res) {
-        //         console.log('bien: ' + res)
-        //         var select = document.createElement('select')
-        //         $.each(JSON.parse(res), function (i, element) {
-        //             console.log(element);
-        //             var option = '<option value="' + element + '">"' + element + '"</option>';
-        //             $('#time').append(option);
-        //         });
-        //         document.getElementById('time').firstChild().setAttribute('select');
-        //     },
-        //     fail: function(res) {
-        //         console.log('mal: ' + res)
-
-        //     }
-        // });
     }
 
-    function getFreeTables() {
-        var date = document.getElementById('date').value
-        var ajax = new XMLHttpRequest();
-        ajax.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-                
-            }
-        }
-        ajax.open("get", "/getFreeTables/" + date, true);
-        ajax.setRequestHeader("Content-Type","application/json;charset=UTF-8");
-        ajax.send();
+    function unlockTable() {
+        var date = document.getElementById('table').removeAttribute('disabled');
+        getFreeDays();
     }
 
 </script>

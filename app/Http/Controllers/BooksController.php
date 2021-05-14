@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Reserva;
+use App\Models\Mesa;
+use Illuminate\Support\Facades\DB;
 
 class BooksController extends Controller
 {
@@ -50,22 +52,27 @@ class BooksController extends Controller
             'time.required' => 'El campo hora es obligatorio',
             'table.required' => 'El campo mesa es obligatorio',
             'comments.max' => 'El campo comentario no puede tener mas de 500 caracteres',
-            ]);
-            // Reserva::create($request->all());
-        $res = Reserva::where('date', $request->date)->get();
+        ]);
+
+        $reserva = new Reserva();
+        $reserva->idClient = auth()->user()->id;
+        $reserva->idTable = $request->idTable;
+        $reserva->date = $request->date;
+        $reserva->save();
+        
+        $res = DB::table('reservas_mesas')->where('date', $request->date)->where('idTable', $request->idTable)->first();
         $time = $request->time;
-        if (count($res->toArray()) == 0) {
-            $reserva = new Reserva();
-            $reserva->$time = 1;
-            $reserva->idClient = 1; //auth()->user()->idClient;
-            $reserva->idTable = 1;
-            $reserva->date = $request->date;
-            $reserva->save();
+
+        if ($res == null) {
+            DB::table('reservas_mesas')->insert([
+                'idBook' => $reserva->idReservation,
+                'idTable' => $request->idTable,
+                'date' => $request->date,
+                $time => 1
+            ]);
         } else {
-            $reserva = $res->firstWhere('date', $request->date);
-            $reserva->$time = 1;
-            $reserva->update();
-            // $book = Book.
+            DB::table('reservas_mesas')->where('date', $request->date)->where('idTable', $request->idTable)->update([$time => 1]);
+            //$res->update();
         }
         return redirect()->route('home');
     }
@@ -118,22 +125,58 @@ class BooksController extends Controller
         return redirect()->route('books.index');
     }
 
-    public function getBooks($date) {
+    public function getBooks($date, $diners) {
         $horas_libres = array();
-        $res = Reserva::where('date', $date)->get();
+        $final = array();
+        $res = DB::table('reservas_mesas')->join('mesas', 'mesas.idTable', 'reservas_mesas.idTable')->where('capacity', $diners)->where('date', $date)->get();
+        // dd($res);
+        //$res = Reserva::where('date', $date)->get();
         if (count($res->toArray()) == 0) {
-            $horas_libres = ['12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '20:00-21:00', '21:00-22:00', '22:00-23:00', '23:00-00:00',];
+            $final[0] = ['12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '20:00-21:00', '21:00-22:00', '22:00-23:00', '23:00-00:00'];
+            $final[1] = Mesa::firstWhere('capacity', $diners)->idTable;
         } else {
-            foreach (($res->toArray()[0]) as $field => $value) {
-                // dd($res->toArray());
-                if ($value == 0) {
-                    array_push($horas_libres, $field);
+            $found = false;
+            $aux = array();
+            $table = null;
+            $tableAux = null;
+            foreach (($res->toArray()) as $field => $record) {
+
+                foreach ($record as $field => $value) {
+                    // dd($res->toArray());
+                    if ($value == 0) {
+                        array_push($aux, $field);                        
+                    }
+                    if ($field == 'idTable') {
+                        $tableAux = $value;
+                    }
                 }
+
+                if (count($aux) > count($horas_libres) ) {
+                    $horas_libres = $aux;
+                    $table = $tableAux;
+                }
+
+                $aux = array();
+                
             }
-            // dd($horas_libres);
+
+            if (count($horas_libres) < 1){
+                $tablesIDs = DB::table('reservas_mesas')->pluck('idTable')->all();
+                $final[1] = Mesa::whereNotIn('idTable', $tablesIDs)->where('capacity', $diners)->first();
+                // dd($final[1]);
+                if ($final[1] == null){
+                    $final[0] = ['No hay horas disponibles'];
+                } else {
+                    $final[0] = ['12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '20:00-21:00', '21:00-22:00', '22:00-23:00', '23:00-00:00'];
+                    $final[1] = $final[1]->idTable;
+                }
+            } else {
+                $final[0] = $horas_libres;
+                $final[1] = $table;
+            }
+            
         }
-        // return $horas_libres;
-        return response()->json($horas_libres, 200);
+        return response()->json($final, 200);
     }
 
     public function getFreeTables() {

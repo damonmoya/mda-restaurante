@@ -69,7 +69,7 @@
           @else
             <li class="nav-item">
               <a href="{{ route('register_form') }}" class="btn btn-danger">Registrarse</a>
-              <a class="btn btn-danger" href="{{ route('login_form') }}">Iniciar sesión</a>
+              <a class="btn btn-danger" href="{{ route('login') }}">Iniciar sesión</a>
             </li>
           @endif  
         </ul>
