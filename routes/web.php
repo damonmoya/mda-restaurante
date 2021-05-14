@@ -21,7 +21,7 @@ use App\Http\Controllers\BooksController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 })->name('home');
 
 Route::middleware('auth')->group(function () { 

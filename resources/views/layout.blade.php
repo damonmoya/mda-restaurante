@@ -40,9 +40,11 @@
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('books.create') }}">Reservar<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('bookings.index') }}">Mis Reservas<span class="sr-only">(current)</span></a>
-            </li>
+            @if (auth()->check())
+              <li class="nav-item active text-nowrap">
+                <a class="nav-link" href="{{ route('bookings.index') }}">Mis Reservas<span class="sr-only">(current)</span></a>
+              </li>
+            @endif
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
@@ -81,7 +83,11 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container">
+    @if (Route::currentRouteName() == 'home')
+      <main role="main" id="main">
+    @else
+      <main role="main" id="main" class="container">
+    @endif
 
       <div class="title">
         @yield('header')
@@ -89,7 +95,7 @@
       @yield('content')
     </main>
 
-    <footer class="footer bg-success footer-dark text-white">
+    <footer class="footer bg-secondary footer-dark text-white">
       <div class="container text-center">
         <span class="footer-text">Il Gusto Di Roma 2021</span>
       </div>
