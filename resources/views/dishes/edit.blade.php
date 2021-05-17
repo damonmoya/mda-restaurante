@@ -70,7 +70,7 @@
         </div>
         <div class="form-group">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Confirmar</button>
-          <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar a listado de platos</a>
+          <a href="{{ route('dishes.index') }} " class="btn btn-outline-danger">Regresar a listado de platos</a>
         </div>
     </form>
     </div>

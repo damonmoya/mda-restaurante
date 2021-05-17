@@ -83,7 +83,11 @@
     </form>
 
     <p>
-        <a href="{{ route('users.index') }} " class="btn btn-outline-primary">Regresar a listado de usuarios</a>
+        @hasrole('Administrator')
+            <a href="{{ route('users.index') }} " class="btn btn-outline-primary">Regresar a listado de usuarios</a>
+        @else
+            <a href="{{ route('home') }} " class="btn btn-outline-danger">Regresar a la página principal</a>
+        @endhasrole
     </p>
     </div>    
 @endsection

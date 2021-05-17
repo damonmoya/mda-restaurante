@@ -16,37 +16,30 @@ class MesaSeeder extends Seeder
     {
         DB::table('mesas')->insert([
             'capacity' => 04,
-            'availability' => True,
         ]);
 
         DB::table('mesas')->insert([
             'capacity' => 04,
-            'availability' => False,
         ]);
 
         DB::table('mesas')->insert([
             'capacity' => 04,
-            'availability' => False,
         ]);
 
         DB::table('mesas')->insert([
             'capacity' => 02,
-            'availability' => True,
         ]);
 
         DB::table('mesas')->insert([
             'capacity' => 04,
-            'availability' => True,
         ]);
 
         DB::table('mesas')->insert([
             'capacity' => 04,
-            'availability' => True,
         ]);
 
         DB::table('mesas')->insert([
             'capacity' => 06,
-            'availability' => True,
         ]);
     }
 }

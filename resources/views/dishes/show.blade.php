@@ -34,13 +34,13 @@
               <div class="form-group">
                     <label for="category">Categoría</label>
                     <select class="form-control" name="category" id="category" aria-label="Default select example">
-                      <option value="Entrantes" selected>Entrantes</option>
-                      <option value="Pizzas">Pizzas</option>
-                      <option value="Arroces">Arroces</option>
-                      <option value="Ensaladas">Ensaladas</option>
-                      <option value="Pastas">Pastas</option>
-                      <option value="Postres">Postres</option>
-                      <option value="Bebidas">Bebidas</option>
+                      <option value="Entrantes" @if ($dish->category == "Entrantes") selected @endif >Entrantes</option>
+                      <option value="Pizzas" @if ($dish->category == "Pizzas") selected @endif >Pizzas</option>
+                      <option value="Arroces" @if ($dish->category == "Arroces") selected @endif >Arroces</option>
+                      <option value="Ensaladas" @if ($dish->category == "Ensaladas") selected @endif >Ensaladas</option>
+                      <option value="Pastas" @if ($dish->category == "Pastas") selected @endif >Pastas</option>
+                      <option value="Postres" @if ($dish->category == "Postres") selected @endif >Postres</option>
+                      <option value="Bebidas" @if ($dish->category == "Bebidas") selected @endif >Bebidas</option>
                     </select>
                 </div>
             </div>
@@ -70,7 +70,11 @@
       </fieldset>
     </form>
     <p>
-        <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar a listado de platos</a>
+        @hasrole('Administrator')
+            <a href="{{ route('dishes.index') }} " class="btn btn-outline-primary">Regresar al listado de platos</a>
+        @else
+            <a href="{{ route('menu') }} " class="btn btn-outline-danger">Regresar al menú</a>
+        @endhasrole
     </p>
     </div>
 @endsection

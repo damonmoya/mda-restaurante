@@ -18,6 +18,12 @@ class UserSeeder extends Seeder
     public function run()
     {
         User::factory()->create([
+            'name' => 'Soy el admin',
+            'email' => 'soyeladmin@hotmail.es',
+            'password' => bcrypt('elmejoradmin'),
+        ])->assignRole('Administrator');
+
+        User::factory()->create([
             'name' => 'Pepe Benavente',
             'email' => 'pepebenavente@hotmail.es',
             'password' => bcrypt('elmejorcantante'),

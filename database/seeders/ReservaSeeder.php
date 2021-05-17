@@ -14,16 +14,35 @@ class ReservaSeeder extends Seeder
      */
     public function run()
     {
+        $today = date('Y-m-d');
+        $tomorrow = date('Y-m-d', strtotime('+1 day'));
+
         DB::table('reservas')->insert([
-            'idClient' => 01,
-            'idTable' => 02,
-            'date' => "2021-11-15 02:20:00",
+            'idClient' => 2,
+            'idTable' => 1,
+            'date' => $today,
+            'time' => '12:00-13:00'
         ]);
 
         DB::table('reservas')->insert([
-            'idClient' => 01,
-            'idTable' => 03,
-            'date' => "2022-01-15 02:00:00",
+            'idClient' => 3,
+            'idTable' => 1,
+            'date' => $today,
+            'time' => '14:00-15:00'
+        ]);
+
+        DB::table('reservas')->insert([
+            'idClient' => 3,
+            'idTable' => 2,
+            'date' => $tomorrow,
+            'time' => '13:00-14:00'
+        ]);
+
+        DB::table('reservas')->insert([
+            'idClient' => 3,
+            'idTable' => 2,
+            'date' => $tomorrow,
+            'time' => '14:00-15:00'
         ]);
     }
 }

@@ -20,6 +20,10 @@ class Mesa extends Model
         'availability',
     ];
 
+    public function reservas() {
+        return $this->belongsToMany(Reserva::class,'reservas_mesas','idTable','idBook');
+    }
+
     /**
      * The primary key associated with the table.
      *

@@ -15,12 +15,15 @@ class CreateReservasTable extends Migration
     {
         Schema::create('reservas', function (Blueprint $table) {
             $table->id('idReservation'); #pk
-            $table->integer('idClient')->nullable();
+            $table->integer('idClient');
             $table->foreign('idClient')->references('id')->on('users')->onDelete('set null')->onUpdate('cascade');
-            $table->integer('idTable')->nullable();
+            $table->integer('idTable');
             $table->foreign('idTable')->references('idTable')->on('mesas');
             $table->date('date');
-            $table->timestamps();
+            $table->string('time');
+            $table->string('comments')->nullable();
+            $table->timestamp('created_at')->useCurrent();
+            $table->timestamp('updated_at')->useCurrent();
         });
     }
 

@@ -5,14 +5,13 @@
 @section('content')
     <div class="container">
     <h1 class="mb-3">Platos</h1>
+    <a href="{{ route('dishes.create') }}" class="btn btn-primary">Nuevo plato</a>
 
     @if ($dishes->isNotEmpty())
         <table class="table">
             <thead class="thead-dark">
                 <div class="form-group mt-2 mt-md-0 mb-3 row">
-                    <div class="col-10">  
-                        <a href="{{ route('dishes.create') }}" class="btn btn-primary">Nuevo plato</a>
-                    </div>
+                    
                 </div>
                 <tr>
                     <th scope="col">ID</th>
@@ -29,7 +28,7 @@
                 <th scope="row">{{ $dish->idProduct }}</th>
                 <td>{{ $dish->name }}</td>
                 <td>{{ $dish->category }}</td>
-                <td>{{ $dish->ingredients }}</td>
+                <td class="w-25">{{ $dish->ingredients }}</td>
                 <td>{{ $dish->price }} €</td>
                 <td>
                     <form action="{{ route('dishes.destroy', [$dish->idProduct]) }}" method="POST">

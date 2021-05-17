@@ -38,17 +38,24 @@
               <a class="nav-link" href="{{ route('home') }}">Pedir a domicilio<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('home') }}">Reservas<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('books.create') }}">Reservar<span class="sr-only">(current)</span></a>
             </li>
+            @if (auth()->check())
+              <li class="nav-item active text-nowrap">
+                <a class="nav-link" href="{{ route('books.index') }}">Mis Reservas<span class="sr-only">(current)</span></a>
+              </li>
+            @endif
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('users.index') }}">Usuarios<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('dishes.index') }}">Platos<span class="sr-only">(current)</span></a>
-            </li>
+            @hasrole('Administrator')
+              <li class="nav-item active text-nowrap">
+                <a class="nav-link" href="{{ route('users.index') }}">Usuarios<span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item active text-nowrap">
+                <a class="nav-link" href="{{ route('dishes.index') }}">Platos<span class="sr-only">(current)</span></a>
+              </li>
+            @endhasrole
           </ul>
         </div>
         <div class="navbar-collapse collapse w-100 order-3">
@@ -67,7 +74,7 @@
           @else
             <li class="nav-item">
               <a href="{{ route('register_form') }}" class="btn btn-danger">Registrarse</a>
-              <a class="btn btn-danger" href="{{ route('login_form') }}">Iniciar sesión</a>
+              <a class="btn btn-danger" href="{{ route('login') }}">Iniciar sesión</a>
             </li>
           @endif  
         </ul>
@@ -76,7 +83,11 @@
     </header>
 
     <!-- Begin page content -->
-    <main role="main" class="container">
+    @if (Route::currentRouteName() == 'home')
+      <main role="main" id="main">
+    @else
+      <main role="main" id="main" class="container">
+    @endif
 
       <div class="title">
         @yield('header')
@@ -84,7 +95,7 @@
       @yield('content')
     </main>
 
-    <footer class="footer bg-success footer-dark text-white">
+    <footer class="footer bg-secondary footer-dark text-white">
       <div class="container text-center">
         <span class="footer-text">Il Gusto Di Roma 2021</span>
       </div>
@@ -93,8 +104,12 @@
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script> -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script> -->
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    @yield('scripts')
   </body>
 </html>
