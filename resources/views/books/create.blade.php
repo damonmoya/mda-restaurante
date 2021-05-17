@@ -24,7 +24,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="date">Fecha:</label>
-                    <input type="date" class="form-control" id="date" name="date"  min="{{date('Y-m-d')}}" onchange="unlockTable()" value="{{ old('date') }}" required>
+                    <input type="date" class="form-control" id="date" name="date"  min="{{date('Y-m-d', strtotime('-1 day'))}}" max="{{date('Y-m-d', strtotime('+1 year'))}}" onchange="unlockTable()" value="{{ old('date') }}" required>
                 </div>
             </div>
             <div class="col-6">
