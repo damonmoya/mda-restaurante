@@ -7,6 +7,7 @@ use App\Models\Reserva;
 use App\Models\Mesa;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Mail;
 
 class BooksController extends Controller
 {
@@ -82,6 +83,16 @@ class BooksController extends Controller
         } else {
             DB::table('reservas_mesas')->where('date', $request->date)->where('idTable', $request->idTable)->update([$time => 1]);
         }
+        // Email
+        $user = auth()->user();
+        $userFullName = $user->name . " " . $user->surname;
+        $table = $request->idTable;
+        Mail::send('mails.newBook', compact('user', 'userFullName', 'reserva', 'table'), function($message)use($user) {
+           $message->to($user->email, $user->email)->subject('Reserva confirmada');
+           $message->from('ilgustodiromanotificaciones@gmail.com','Il Gusto Di Roma');
+        });
+    
+        // Redirect
         return redirect()->route('home');
     }
 
