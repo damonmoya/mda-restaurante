@@ -43,6 +43,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center mb-5">
+            {{ $dishes->links() }}
+        </div>
     @else
         <p>No hay platos en la carta</p>
     @endif

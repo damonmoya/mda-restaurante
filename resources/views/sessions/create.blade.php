@@ -32,10 +32,8 @@
 
         <div class="form-group">
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Iniciar sesión</button>
+            <a href="{{ route('home') }} " class="btn btn-outline-danger">Regresar a Home</a>
         </div>
     </form>
 
-    <p>
-        <a href="{{ route('home') }} " class="btn btn-outline-danger">Regresar a Home</a>
-    </p>
 @endsection

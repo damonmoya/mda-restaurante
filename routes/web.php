@@ -46,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::resource('books', 'App\Http\Controllers\BooksController')->except(['update', 'edit']);
 
     Route::get('/getBooks/{date}/{diners}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
-
+    Route::get('/getBooksAdmin/{date}/{idTable}', 'App\Http\Controllers\BooksController@getBooksAdmin')->name('getBooksAdmin');
 });
 
 
@@ -55,8 +55,6 @@ Route::post('register', 'App\Http\Controllers\RegistrationController@store')->na
 
 Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('login');
 Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
-
-Route::resource('bookings', 'App\Http\Controllers\BookingsController');
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
 

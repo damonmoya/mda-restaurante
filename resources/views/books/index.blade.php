@@ -13,7 +13,6 @@
         <table class="table">
             <thead class="thead-dark">
                 <div class="form-group mt-2 mt-md-0 mb-3 row">
-                    
                 </div>
                 <tr>
                     <th scope="col">ID</th>
@@ -45,6 +44,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center mb-5">
+            {{ $books->links() }}
+        </div>
     @else
         <p>No hay reservas</p>
     @endif
