@@ -46,7 +46,8 @@ html {
   width: 400px;
 }
 
-.pedido-content{
+/* CSS Pedidos  */ 
+.pedido-content {
   background-image: url("../assets/imgs/fondo-pedido.jpg") !important;
   background-size: cover;
   background-repeat: no-repeat;
@@ -54,14 +55,48 @@ html {
   color: white;
 }
 
-.pedido-container{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
+.pedido-container {
+  text-align: center;
   padding: 0.5em;
+  margin: 0.5em;
 }
 
-.pedido-form{
+.pedido-form {
   background-color: rgba(29, 25, 25, 0.849);
   padding: 0.5em;
+	width: 100%;
+  color:#bebebe;
+	border-radius: 8px;
+	
+	box-shadow: 0 8px 20px 0 rgba(0, 0, 0, .15);
+	
+}
+
+.form-control{
+  background: 0 0;
+  color: aliceblue;
+}
+
+.carrito {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.btn-order {
+    background: #edb77d;
+    color: #fff;
+    padding: 15px 43px;
+    font-weight: 700;
+    border: none;
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -o-border-radius: 5px;
+    -ms-border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-order:hover {
+  background: #e79e50;
 }

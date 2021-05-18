@@ -45,6 +45,18 @@ class PedidoController extends Controller
         // $pedidos = Pedido::all();
         // dd($pedidos);
 
+        $data_cp = file_get_contents("../public/assets/json/postal_codes.json");
+        $postal_codes = json_decode($data_cp, true);
+                                                    
+        if (in_array($request->postalCode, $postal_codes) === False){
+            return redirect()->back()->with('bad_code_postal', $request->name);
+        }
+
+        if (\Cart::getSubTotal() < 10){
+            return redirect()->back()->with('insufficient_quantity', $request->name);
+        }
+
+
         $array = array(
             "name" => $request->name,
             "surname" => $request->surname,
@@ -54,13 +66,6 @@ class PedidoController extends Controller
             "postal_code" => $request->postalCode,
             "items" => $items = \Cart::getContent(),
         );
-
-        $data_cp = file_get_contents("../public/assets/json/postal_codes.json");
-        $postal_codes = json_decode($data_cp, true);
-                                                    
-        if (in_array($request->postalCode, $postal_codes) === False){
-            return redirect()->back()->with('bad_code_postal', $request->name);
-        }
 
         $pedido = new Pedido;
         $pedido->idClient = auth()->user()->id;
