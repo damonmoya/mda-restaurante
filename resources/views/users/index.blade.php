@@ -39,6 +39,9 @@
             @endforeach
             </tbody>
         </table>
+        <div class="d-flex justify-content-center mb-5">
+            {{ $users->links() }}
+        </div>
     @else
         <p>No hay usuarios registrados</p>
     @endif

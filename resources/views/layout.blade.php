@@ -9,6 +9,7 @@
 
     <title>@yield('title') - Il Gusto Di Roma</title>
 
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 
     <!-- Bootstrap core CSS -->

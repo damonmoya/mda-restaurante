@@ -14,7 +14,7 @@ class DishesController extends Controller
      */
     public function index()
     {
-        $dishes = Producto::all();
+        $dishes = Producto::paginate(10);
         return view('dishes.index', compact('dishes'));
     }
 

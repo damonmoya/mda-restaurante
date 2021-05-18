@@ -20,9 +20,9 @@ class BooksController extends Controller
     public function index()
     {
         if (auth()->user()->hasrole('Administrator')){
-            $books = Reserva::all();
+            $books = Reserva::simplePaginate(10);
         } else {
-            $books = Reserva::where('idClient', auth()->user()->id)->where('date', '>=', date('Y-m-d'))->get();
+            $books = Reserva::where('idClient', auth()->user()->id)->where('date', '>=', date('Y-m-d'))->paginate(10);
         }
             return view('books.index', compact('books'));
     }

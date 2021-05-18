@@ -42,7 +42,7 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="time" class="form-label">Hora:</label>
-                    <select class="form-control" name="time" id="time" aria-label="Default select example">
+                    <select class="form-control" name="time" id="time" aria-label="Default select example" disabled>
                     </select>
                 </div>
             </div>
@@ -98,6 +98,7 @@
 
     function unlockTable() {
         var date = document.getElementById('table').removeAttribute('disabled');
+        var time = document.getElementById('time').removeAttribute('disabled');
         getFreeDays();
     }
 
