@@ -109,14 +109,14 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="name"><strong>Nombre</strong></label>
-                                    <input type="text" class="form-control" id="name" name="name"
+                                    <input type="text" class="form-control input-form-pedido" id="name" name="name"
                                         value="{{ $user->name }}" required>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label for="surname"><strong>Apellidos</strong></label>
-                                    <input type="text" class="form-control" id="surname" name="surname"
+                                    <input type="text" class="form-control input-form-pedido" id="surname" name="surname"
                                         value="{{ $user->surname }}" required>
                                 </div>
                             </div>
@@ -126,14 +126,14 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="email"><strong>Correo electrónico</strong></label>
-                                    <input type="email" class="form-control" id="email" name="email"
+                                    <input type="email" class="form-control input-form-pedido" id="email" name="email"
                                         value="{{ $user->email }}" required>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="phone"><strong>Nº de contacto</strong></label>
-                                    <input type="text" class="form-control" id="phone" name="phone"
+                                    <input type="text" class="form-control input-form-pedido" id="phone" name="phone"
                                         value="{{ $user->phone }}" required>
                                 </div>
                             </div>
@@ -143,14 +143,14 @@
                             <div class="col-8">
                                 <div class="form-group">
                                     <label for="address"><strong>Dirección de envío</strong></label>
-                                    <input type="text" class="form-control" id="address" name="address"
+                                    <input type="text" class="form-control input-form-pedido" id="address" name="address"
                                         value="{{ $user->address }}" required>
                                 </div>
                             </div>
                             <div class="col-4">
                                 <div class="form-group">
                                     <label for="postalCode"><strong>C.P.</strong></label>
-                                    <input type="text" class="form-control" id="postalCode" name="postalCode"
+                                    <input type="text" class="form-control input-form-pedido" id="postalCode" name="postalCode"
                                         value="{{ $user->postalCode }}" required>
                                 </div>
                             </div>
@@ -163,7 +163,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="date_delivery"><strong>Fecha de envío</strong></label>
-                                    <input type="datetime-local" class="form-control" id="date_delivery"
+                                    <input type="datetime-local" class="form-control input-form-pedido" id="date_delivery"
                                         name="date_delivery" value="{{$date_actual }}" min="{{$date_actual}}"
                                         max="2023-06-14T00:00" required>
                                 </div>
