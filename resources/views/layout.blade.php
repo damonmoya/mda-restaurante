@@ -35,7 +35,7 @@
               <a class="nav-link" href="{{ route('menu') }}">Carta del restaurante<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('home') }}">Pedir a domicilio<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('pedido') }}">Pedir a domicilio<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('books.create') }}">Reservar<span class="sr-only">(current)</span></a>
@@ -48,7 +48,7 @@
             <li class="nav-item active text-nowrap">
               <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
-            @hasrole('Administrator')
+            @hasanyrole('Administrator')
               <li class="nav-item active text-nowrap">
                 <a class="nav-link" href="{{ route('users.index') }}">Usuarios<span class="sr-only">(current)</span></a>
               </li>

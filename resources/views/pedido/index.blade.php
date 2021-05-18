@@ -18,7 +18,11 @@
             <p>Su pedido ha sido <strong>cancelado</strong> correctamente.</div>
         @endif
 
-
+        @if( \Session::has('bad_code_postal') )
+            <div class="alert alert-danger alert-dismissable" role="alert">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <p>No se ha podido completar su pedido: <strong>código postal</strong> fuera del área de reparto.</div>
+        @endif
 
         <div class="pedido-container">
                 
@@ -67,7 +71,7 @@
                                         $total += $item->price;
                                     }
                                     $total += $total*0.07;
-                                    echo "<th> $total € </th>";
+                                    echo "<th>" . round($total, 2) . " € </th>";
                                 @endphp
                             </tr>
                         </tbody>
@@ -78,8 +82,8 @@
             <div>
                 @if (auth()->check())
                     <?php $user = auth()->user(); ?>
+                    <h4>Confirmar datos de envío</h4>
                     <div class="container pedido-form">
-                        <h4>Confirmar datos usuario</h4>
 
                         {{-- Sección de formulario para confirmar pedido --}}
                         <form method="POST" action="{{route('create_pedido')}}">
@@ -197,7 +201,7 @@
                                     <td>{{$item->idOrder}}</td>
                                     <td>{{$item->date_delivery}}</td>
                                     <td>{{$item->address}}</td>
-                                    <td>{{$item->cost}}</td>
+                                    <td>{{ round($item->cost, 2) }}</td>
                                 </tr>
                             @endforeach
                         </tbody>

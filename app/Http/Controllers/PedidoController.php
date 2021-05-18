@@ -51,8 +51,16 @@ class PedidoController extends Controller
             "direccion" => $request->address,
             "email" => $request->mail,
             "phone" => $request->phone,
+            "postal_code" => $request->postalCode,
             "items" => $items = \Cart::getContent(),
         );
+
+        $data_cp = file_get_contents("../public/assets/json/postal_codes.json");
+        $postal_codes = json_decode($data_cp, true);
+                                                    
+        if (in_array($request->postalCode, $postal_codes) === False){
+            return redirect()->back()->with('bad_code_postal', $request->name);
+        }
 
         $pedido = new Pedido;
         $pedido->idClient = auth()->user()->id;
