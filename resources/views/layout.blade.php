@@ -9,7 +9,6 @@
 
     <title>@yield('title') - Il Gusto Di Roma</title>
 
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
 
     <!-- Bootstrap core CSS -->
@@ -47,7 +46,7 @@
               </li>
             @endif
             <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('home') }}">Contacto<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('ratings.index') }}">Contacto<span class="sr-only">(current)</span></a>
             </li>
             @hasrole('Administrator')
               <li class="nav-item active text-nowrap">

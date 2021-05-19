@@ -5,6 +5,7 @@ use App\Http\Controllers\PedidoController;
 use App\Http\Controllers\MesaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\RatingsController;
 // use App\Http\Controllers\RegistrationController;
 // use App\Http\Controllers\SessionsController;
 // use App\Http\Controllers\DishesController;
@@ -47,6 +48,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/getBooks/{date}/{diners}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
     Route::get('/getBooksAdmin/{date}/{idTable}', 'App\Http\Controllers\BooksController@getBooksAdmin')->name('getBooksAdmin');
+    Route::resource('ratings', RatingsController::class)->except(['update', 'edit', 'show']);
 });
 
 
@@ -57,6 +59,7 @@ Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('lo
 Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
 
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
+
 
 Route::prefix('dishes')->group(function () {
     Route::name('dishes.')->group(function () {
