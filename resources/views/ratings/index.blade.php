@@ -24,7 +24,7 @@
             @foreach($ratings as $rating)
             <tr>
                 <th scope="row">{{ $rating->idRating }}</th>
-                <td>{{ $rating->rating }}</td>
+                <td>{{ $rating->rating }} estrellas</td>
                 <td>{{ $rating->comment }}</td>
                 <td>
                     <form action="{{ route('ratings.destroy', [$rating->idRating]) }}" method="POST">

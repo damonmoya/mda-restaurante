@@ -25,22 +25,14 @@
             <div class="col-6">
                 <div class="form-group">
                 <input type="hidden" class="form-control" id="idClient" name="idClient" value="{{ $idClient }}">
-                    <label for="rating">Rating</label>
-                    <div class="center">
-                        <div class="stars">
-                        <input type="radio" id="one" name="rating" value="1">
-                        <label for="one"></label>
-                        <input type="radio" id="two" name="rating" value="2">
-                        <label for="two"></label>
-                        <input type="radio" id="three" name="rating" value="3">
-                        <label for="three"></label>
-                        <input type="radio" id="four" name="rating" value="4">
-                        <label for="four"></label>
-                        <input type="radio" id="five" name="rating" value="5">
-                        <label for="five"></label>
-                        <span class="result"></span>
-                        </div>
-                    </div>
+                    <fieldset class="rating">
+                        <legend>¡Puntúanos!</legend>
+                        <input type="radio" id="star5" name="rating" value="5"/><label for="star5" title="Rocks!">5 stars</label>
+                        <input type="radio" id="star4" name="rating" value="4"/><label for="star4" title="Pretty good">4 stars</label>
+                        <input type="radio" id="star3" name="rating" value="3" checked/><label for="star3" title="Meh">3 stars</label>
+                        <input type="radio" id="star2" name="rating" value="2"/><label for="star2" title="Kinda bad">2 stars</label>
+                        <input type="radio" id="star1" name="rating" value="1"/><label for="star1" title="Sucks big time">1 star</label>
+                    </fieldset>
                 </div>
             </div>
         </div>
@@ -49,7 +41,7 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="comment">Comentario</label>
-                    <textarea type="text" class="form-control" id="comment" name="comment" value="{{ old('comment') }}" maxlength=500></textarea>
+                    <textarea type="text" class="form-control" id="comment" name="comment" maxlength=500>{{ old('comment') }}</textarea>
                 </div>
             </div>
         </div>

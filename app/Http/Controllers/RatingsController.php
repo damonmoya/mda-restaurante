@@ -39,10 +39,13 @@ class RatingsController extends Controller
     public function store(Request $request)
     {
         $data = request()->validate([
-            'rating' => ['required', 'min:1', 'max:2'],
-            'comment' => ['required', 'min:2', 'max:50'],
+            'rating' => ['required'],
+            'comment' => ['required', 'min:10', 'max:100'],
         ], [
-            
+            'rating.required' => '¡Debes puntuarnos para enviar tu valoración!',
+            'comment.required' => '¡Debes escribir un comentario para enviar tu valoración!',
+            'comment.min' => 'El comentario debe tener más de 10 caracteres',
+            'comment.max' => 'El comentario debe tener menos de 100 caracteres'
         ]);
 
         Ratings::create($request->all());
