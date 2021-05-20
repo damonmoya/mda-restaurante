@@ -176,3 +176,15 @@ p.card-text.menu-ingredients::-webkit-scrollbar{
   top:2px;
   left:2px;
 } 
+
+.background-content {
+  background-image: url("../assets/imgs/fondo-pedido.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: white;
+}
+
+.navbar-color {
+  background-image:  linear-gradient(to bottom, #28a745, #28a745, #174622) !important;
+}

@@ -3,6 +3,7 @@
 @section('title', "Crear nuevo rating")
 
 @section('content')
+    
     <div class="container">
     <h2>Crear nuevo rating</h2>
 

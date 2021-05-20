@@ -65,7 +65,7 @@
                         </th>
                         <!--<th scope="row">{{$item->id}}</th>-->
                         <td>{{$item->name}}</td>
-                        <td>{{$item->price}}</td>
+                        <td>{{$item->price}} €</td>
                         <td>{{$item->quantity}}</td>
                     </tr>
                     @endforeach
@@ -239,7 +239,7 @@
                         <td>{{$item->idOrder}}</td>
                         <td>{{$item->date_delivery}}</td>
                         <td>{{$item->address}}</td>
-                        <td>{{ round($item->cost, 2) }}</td>
+                        <td>{{ round($item->cost, 2) }} €</td>
                     </tr>
                     @endforeach
                 </tbody>
@@ -268,7 +268,7 @@
                         <td>{{$item->idOrder}}</td>
                         <td>{{$item->date_delivery}}</td>
                         <td>{{$item->address}}</td>
-                        <td>{{$item->cost}}</td>
+                        <td>{{$item->cost}} €</td>
                     </tr>
                     @endforeach
                 </tbody>

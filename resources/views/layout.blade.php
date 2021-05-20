@@ -17,11 +17,11 @@
     <link rel="stylesheet" href="/css/style.css">
   </head>
 
-  <body>
+  <body class="background-content">
 
     <header>
       <!-- Fixed navbar -->
-      <nav class="navbar navbar-expand-md navbar-dark bg-success">
+      <nav class="navbar navbar-expand-md navbar-dark bg-success navbar-color">
         <a class="navbar-brand" href="{{ route('home') }}"><img src="{{ asset('/logos/logo_2.png') }}" alt="logo" height="80" width="380"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>

@@ -24,9 +24,12 @@ class UserSeeder extends Seeder
         ])->assignRole('Administrator');
 
         User::factory()->create([
-            'name' => 'Pepe Benavente',
+            'name' => 'Pepe',
             'email' => 'pepebenavente@hotmail.es',
             'password' => bcrypt('elmejorcantante'),
+            'surname' => 'Benavente',
+            'postalcode' => '35000',
+            'address' => 'Calle Barranco Zurbarán',
         ]);
 
         User::factory()->create([
