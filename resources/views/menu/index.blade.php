@@ -9,7 +9,7 @@
     <div class="container">
 
     @if ( \Session::has('success') )
-        <div class="alert alert-success alert-dismissable" role="alert">
+        <div class="alert alert-success alert-dismissable" id="notification" role="alert">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             <p>¡Se ha añadido <strong> {{ \Session::get('success') }}</strong> correctamente!</div>
     @endif
