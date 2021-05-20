@@ -28,29 +28,31 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $entrante->name }}</h5>
                         <p class="card-text menu-ingredients">{{ $entrante->ingredients }} </p>
-
-                        <form method="POST" action="{{route('cart.store')}}">
-                            @csrf
-                            <div class="form-group">
-                                <!--<label for="id">ID</label>-->
-                                <input type="hidden" value="{{ $entrante->idProduct }}" name="id" class="form-control" id="id">
-                            </div>
-                            <div class="form-group">
-                                <!--<label for="name">NOMBRE</label>-->
-                                <input type="hidden" value="{{ $entrante->name }}" name="name" class="form-control" id="name">
-                            </div>
-                            <div class="price-quantity">
-                            <div class="form-group form-price">
-                                <label for="price">PRECIO</label>
-                                <input type="text" readOnly value="{{ $entrante->price }} €" name="price" class="form-control" id="price">
-                            </div>
-                            <div class="form-group form-quantity">
-                                <label for="quantity">CANTIDAD</label>
-                                <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
-                            </div>
-                            </div>
-                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
-                        </form>
+                        
+                        @if (auth()->check())
+                            <form method="POST" action="{{route('cart.store')}}">
+                                @csrf
+                                <div class="form-group">
+                                    <!--<label for="id">ID</label>-->
+                                    <input type="hidden" value="{{ $entrante->idProduct }}" name="id" class="form-control" id="id">
+                                </div>
+                                <div class="form-group">
+                                    <!--<label for="name">NOMBRE</label>-->
+                                    <input type="hidden" value="{{ $entrante->name }}" name="name" class="form-control" id="name">
+                                </div>
+                                <div class="price-quantity">
+                                <div class="form-group form-price">
+                                    <label for="price">PRECIO</label>
+                                    <input type="text" readOnly value="{{ $entrante->price }} €" name="price" class="form-control" id="price">
+                                </div>
+                                <div class="form-group form-quantity">
+                                    <label for="quantity">CANTIDAD</label>
+                                    <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
+                                </div>
+                                </div>
+                                <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
+                            </form>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -69,28 +71,30 @@
                     <h5 class="card-title">{{ $pizza->name }}</h5>
                     <p class="card-text menu-ingredients">{{ $pizza->ingredients }} </p>
 
-                    <form method="POST" action="{{route('cart.store')}}">
-                        @csrf
-                        <div class="form-group">
-                            <!--<label for="id">ID</label>-->
-                            <input type="hidden" value="{{ $pizza->idProduct }}" name="id" class="form-control" id="id">
-                        </div>
-                        <div class="form-group">
-                            <!--<label for="name">NOMBRE</label>-->
-                            <input type="hidden" value="{{ $pizza->name }}" name="name" class="form-control" id="name">
-                        </div>
-                        <div class="price-quantity">
-                        <div class="form-group form-price">
-                            <label for="price">PRECIO</label>
-                            <input type="text" readOnly value="{{ $pizza->price }}" name="price" class="form-control" id="price">
-                        </div>
-                        <div class="form-group form-quantity">
-                            <label for="quantity">CANTIDAD</label>
-                            <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
-                        </div>
-                        </div>
-                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
-                    </form>
+                    @if (auth()->check())
+                        <form method="POST" action="{{route('cart.store')}}">
+                            @csrf
+                            <div class="form-group">
+                                <!--<label for="id">ID</label>-->
+                                <input type="hidden" value="{{ $pizza->idProduct }}" name="id" class="form-control" id="id">
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="name">NOMBRE</label>-->
+                                <input type="hidden" value="{{ $pizza->name }}" name="name" class="form-control" id="name">
+                            </div>
+                            <div class="price-quantity">
+                            <div class="form-group form-price">
+                                <label for="price">PRECIO</label>
+                                <input type="text" readOnly value="{{ $pizza->price }}" name="price" class="form-control" id="price">
+                            </div>
+                            <div class="form-group form-quantity">
+                                <label for="quantity">CANTIDAD</label>
+                                <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
+                            </div>
+                            </div>
+                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
+                        </form>
+                    @endif
                 </div>
             </div>
             </div>
@@ -109,28 +113,30 @@
                     <h5 class="card-title">{{ $arroz->name }}</h5>
                     <p class="card-text menu-ingredients">{{ $arroz->ingredients }} </p>
 
-                    <form method="POST" action="{{route('cart.store')}}">
-                        @csrf
-                        <div class="form-group">
-                            <!--<label for="id">ID</label>-->
-                            <input type="hidden" value="{{ $arroz->idProduct }}" name="id" class="form-control" id="id">
-                        </div>
-                        <div class="form-group">
-                            <!--<label for="name">NOMBRE</label>-->
-                            <input type="hidden" value="{{ $arroz->name }}" name="name" class="form-control" id="name">
-                        </div>
-                        <div class="price-quantity">
-                        <div class="form-group form-price">
-                            <label for="price">PRECIO</label>
-                            <input type="text" readOnly value="{{ $arroz->price }}" name="price" class="form-control" id="price">
-                        </div>
-                        <div class="form-group form-quantity">
-                            <label for="quantity">CANTIDAD</label>
-                            <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
-                        </div>
-                        </div>
-                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
-                    </form>
+                    @if (auth()->check())
+                        <form method="POST" action="{{route('cart.store')}}">
+                            @csrf
+                            <div class="form-group">
+                                <!--<label for="id">ID</label>-->
+                                <input type="hidden" value="{{ $arroz->idProduct }}" name="id" class="form-control" id="id">
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="name">NOMBRE</label>-->
+                                <input type="hidden" value="{{ $arroz->name }}" name="name" class="form-control" id="name">
+                            </div>
+                            <div class="price-quantity">
+                            <div class="form-group form-price">
+                                <label for="price">PRECIO</label>
+                                <input type="text" readOnly value="{{ $arroz->price }}" name="price" class="form-control" id="price">
+                            </div>
+                            <div class="form-group form-quantity">
+                                <label for="quantity">CANTIDAD</label>
+                                <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
+                            </div>
+                            </div>
+                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
+                        </form>
+                    @endif
                 </div>
                 </div>
             </div>
@@ -149,28 +155,30 @@
                     <h5 class="card-title">{{ $ensalada->name }}</h5>
                     <p class="card-text menu-ingredients">{{ $ensalada->ingredients }} </p>
 
-                    <form method="POST" action="{{route('cart.store')}}">
-                        @csrf
-                        <div class="form-group">
-                            <!--<label for="id">ID</label>-->
-                            <input type="hidden" value="{{ $ensalada->idProduct }}" name="id" class="form-control" id="id">
-                        </div>
-                        <div class="form-group">
-                            <!--<label for="name">NOMBRE</label>-->
-                            <input type="hidden" value="{{ $ensalada->name }}" name="name" class="form-control" id="name">
-                        </div>
-                        <div class="price-quantity">
-                        <div class="form-group form-price">
-                            <label for="price">PRECIO</label>
-                            <input type="text" readOnly value="{{ $ensalada->price }}" name="price" class="form-control" id="price">
-                        </div>
-                        <div class="form-group form-quantity">
-                            <label for="quantity">CANTIDAD</label>
-                            <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
-                        </div>
-                        </div>
-                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
-                    </form>
+                    @if (auth()->check())
+                        <form method="POST" action="{{route('cart.store')}}">
+                            @csrf
+                            <div class="form-group">
+                                <!--<label for="id">ID</label>-->
+                                <input type="hidden" value="{{ $ensalada->idProduct }}" name="id" class="form-control" id="id">
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="name">NOMBRE</label>-->
+                                <input type="hidden" value="{{ $ensalada->name }}" name="name" class="form-control" id="name">
+                            </div>
+                            <div class="price-quantity">
+                            <div class="form-group form-price">
+                                <label for="price">PRECIO</label>
+                                <input type="text" readOnly value="{{ $ensalada->price }}" name="price" class="form-control" id="price">
+                            </div>
+                            <div class="form-group form-quantity">
+                                <label for="quantity">CANTIDAD</label>
+                                <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
+                            </div>
+                            </div>
+                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
+                        </form>
+                    @endif
                 </div>
                 </div>
             </div>
@@ -189,28 +197,30 @@
                     <h5 class="card-title">{{ $pasta->name }}</h5>
                     <p class="card-text menu-ingredients">{{ $pasta->ingredients }} </p>
 
-                    <form method="POST" action="{{route('cart.store')}}">
-                        @csrf
-                        <div class="form-group">
-                            <!--<label for="id">ID</label>-->
-                            <input type="hidden" value="{{ $pasta->idProduct }}" name="id" class="form-control" id="id">
-                        </div>
-                        <div class="form-group">
-                            <!--<label for="name">NOMBRE</label>-->
-                            <input type="hidden" value="{{ $pasta->name }}" name="name" class="form-control" id="name">
-                        </div>
-                        <div class="price-quantity">
-                        <div class="form-group form-price">
-                            <label for="price">PRECIO</label>
-                            <input type="text" readOnly value="{{ $pasta->price }}" name="price" class="form-control" id="price">
-                        </div>
-                        <div class="form-group form-quantity">
-                            <label for="quantity">CANTIDAD</label>
-                            <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
-                        </div>
-                        </div>
-                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
-                    </form>
+                    @if (auth()->check())
+                        <form method="POST" action="{{route('cart.store')}}">
+                            @csrf
+                            <div class="form-group">
+                                <!--<label for="id">ID</label>-->
+                                <input type="hidden" value="{{ $pasta->idProduct }}" name="id" class="form-control" id="id">
+                            </div>
+                            <div class="form-group">
+                                <!--<label for="name">NOMBRE</label>-->
+                                <input type="hidden" value="{{ $pasta->name }}" name="name" class="form-control" id="name">
+                            </div>
+                            <div class="price-quantity">
+                            <div class="form-group form-price">
+                                <label for="price">PRECIO</label>
+                                <input type="text" readOnly value="{{ $pasta->price }}" name="price" class="form-control" id="price">
+                            </div>
+                            <div class="form-group form-quantity">
+                                <label for="quantity">CANTIDAD</label>
+                                <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
+                            </div>
+                            </div>
+                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
+                        </form>
+                    @endif
                 </div>
                 </div>
             </div>
@@ -229,6 +239,49 @@
                         <h5 class="card-title">{{ $postre->name }}</h5>
                         <p class="card-text menu-ingredients">{{ $postre->ingredients }} </p>
 
+                        @if (auth()->check())
+                            <form method="POST" action="{{route('cart.store')}}">
+                                @csrf
+                                <div class="form-group">
+                                    <!--<label for="id">ID</label>-->
+                                    <input type="hidden" value="{{ $postre->idProduct }}" name="id" class="form-control" id="id">
+                                </div>
+                                <div class="form-group">
+                                    <!--<label for="name">NOMBRE</label>-->
+                                    <input type="hidden" value="{{ $postre->name }}" name="name" class="form-control" id="name">
+                                </div>
+                                <div class="price-quantity">
+                                <div class="form-group form-price">
+                                    <label for="price">PRECIO</label>
+                                    <input type="text" readOnly value="{{ $postre->price }}" name="price" class="form-control" id="price">
+                                </div>
+                                <div class="form-group form-quantity">
+                                    <label for="quantity">CANTIDAD</label>
+                                    <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
+                                </div>
+                                </div>
+                                <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
+                            </form>
+                        @endif
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    <h3 class="menu-section-title">Bebidas</h3>
+    <div class="row">
+        @foreach($bebidas as $bebida)
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="card my-3">
+                <a href="{{ route('dishes.show', [$bebida->idProduct]) }}">
+                <img src="{{ $bebida->image }}" class="card-img-top" width="240" height="206" alt="{{ $entrante->name }}" >
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{{ $bebida->name }}</h5>
+                    <p class="card-text menu-ingredients">{{ $bebida->ingredients }} </p>
+
+                    @if (auth()->check())
                         <form method="POST" action="{{route('cart.store')}}">
                             @csrf
                             <div class="form-group">
@@ -251,46 +304,7 @@
                             </div>
                             <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                         </form>
-                    </div>
-                </div>
-            </div>
-        @endforeach
-    </div>
-
-    <h3 class="menu-section-title">Bebidas</h3>
-    <div class="row">
-        @foreach($bebidas as $bebida)
-            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
-                <div class="card my-3">
-                <a href="{{ route('dishes.show', [$bebida->idProduct]) }}">
-                <img src="{{ $bebida->image }}" class="card-img-top" width="240" height="206" alt="{{ $entrante->name }}" >
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">{{ $bebida->name }}</h5>
-                    <p class="card-text menu-ingredients">{{ $bebida->ingredients }} </p>
-
-                    <form method="POST" action="{{route('cart.store')}}">
-                        @csrf
-                        <div class="form-group">
-                            <!--<label for="id">ID</label>-->
-                            <input type="hidden" value="{{ $postre->idProduct }}" name="id" class="form-control" id="id">
-                        </div>
-                        <div class="form-group">
-                            <!--<label for="name">NOMBRE</label>-->
-                            <input type="hidden" value="{{ $postre->name }}" name="name" class="form-control" id="name">
-                        </div>
-                        <div class="price-quantity">
-                        <div class="form-group form-price">
-                            <label for="price">PRECIO</label>
-                            <input type="text" readOnly value="{{ $postre->price }}" name="price" class="form-control" id="price">
-                        </div>
-                        <div class="form-group form-quantity">
-                            <label for="quantity">CANTIDAD</label>
-                            <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
-                        </div>
-                        </div>
-                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
-                    </form>
+                    @endif
                 </div>
                 </div>
             </div>
