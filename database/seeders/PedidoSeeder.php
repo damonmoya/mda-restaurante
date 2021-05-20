@@ -35,7 +35,7 @@ class PedidoSeeder extends Seeder
         DB::table('pedidos')->insert([
             'idClient' => 2,
             'date_send' => "2021-01-25 22:00",
-            'date_delivery' => "2021-04-13 20:31",
+            'date_delivery' => "2021-01-25 22:00",
             'address' => 'Calle Ada Lovelace, 35215',
             'cost' => '84.00'
         ]);
@@ -43,7 +43,7 @@ class PedidoSeeder extends Seeder
         DB::table('pedidos')->insert([
             'idClient' => 2,
             'date_send' => "2021-03-13 20:31",
-            'date_delivery' => "2021-04-13 20:31",
+            'date_delivery' => "2021-03-13 20:31",
             'address' => 'Calle Alan Turing, 35215',
             'cost' => '55.00'
         ]);
@@ -51,7 +51,7 @@ class PedidoSeeder extends Seeder
         DB::table('pedidos')->insert([
             'idClient' => 2,
             'date_send' => "2020-02-11 15:50",
-            'date_delivery' => "2021-04-13 20:31",
+            'date_delivery' => "2020-02-11 15:50",
             'address' => 'Calle Margaret Hamilton, 35130',
             'cost' => '42.99'
         ]);

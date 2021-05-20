@@ -100,3 +100,38 @@ html {
 .btn-order:hover {
   background: #e79e50;
 }
+
+/* CSS Menú **/
+
+.menu-ingredients{
+  height: 80px;
+  overflow: auto;
+}
+
+.price-quantity{
+  display: flex;
+}
+
+.form-quantity{
+  padding-left: 0.5em;
+}
+
+.menu-content {
+  background-image: url("../assets/imgs/fondo-pedido.jpg") !important;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.menu-section-title{
+  color: white;
+  margin-top:1em;
+}
+
+p.card-text.menu-ingredients::-webkit-scrollbar{
+  display: none;
+}
+
+.card {
+  background-color: #f0b267;
+}

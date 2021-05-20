@@ -8,28 +8,28 @@
 <body class="pedido-content">
 
     @if ( \Session::has('success_create_order') )
-    <div class="alert alert-success alert-dismissable" role="alert">
+    <div class="alert alert-success alert-dismissable" id="notification" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p>¡Ha realizado su pedido correctamente!
     </div>
     @endif
 
     @if( \Session::has('success_deleted_order') )
-    <div class="alert alert-warning alert-dismissable" role="alert">
+    <div class="alert alert-warning alert-dismissable" id="notification" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p>Su pedido ha sido <strong>cancelado</strong> correctamente.
     </div>
     @endif
 
     @if( \Session::has('bad_code_postal') )
-    <div class="alert alert-danger alert-dismissable" role="alert">
+    <div class="alert alert-danger alert-dismissable" id="notification" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p>No se ha podido completar su pedido: <strong>código postal</strong> fuera del área de reparto.
     </div>
     @endif
 
     @if( \Session::has('insufficient_quantity') )
-    <div class="alert alert-danger alert-dismissable" role="alert">
+    <div class="alert alert-danger alert-dismissable" id="notification" role="alert">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         <p>Su pedido no supera la cantidad mínima necesaria (10€).
     </div>
