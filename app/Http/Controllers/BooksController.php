@@ -7,6 +7,7 @@ use App\Models\Reserva;
 use App\Models\Mesa;
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Database\Eloquent\Collection;
 use Mail;
 
 class BooksController extends Controller
@@ -19,9 +20,9 @@ class BooksController extends Controller
     public function index()
     {
         if (auth()->user()->hasrole('Administrator')){
-            $books = Reserva::all();
+            $books = Reserva::simplePaginate(10);
         } else {
-            $books = Reserva::where('idClient', auth()->user()->id)->get();
+            $books = Reserva::where('idClient', auth()->user()->id)->where('date', '>=', date('Y-m-d'))->paginate(10);
         }
             return view('books.index', compact('books'));
     }
@@ -51,21 +52,28 @@ class BooksController extends Controller
     {
         ////required|date|before_or_equal:today
         $data = request()->validate([
+            'idClient' => ['required'],
             'date' => ['required', 'date', 'after_or_equal:today'],
             'time' => ['required'],
-            'table' => ['required'],
+            'idTable' => ['required'],
             'comments' => ['max:500'],
             ], [
-            'name.required' => 'El campo fecha es obligatorio',
-            'name.date' => 'La fecha no es valida',
-            'name.after_or_equal' => 'La fecha tiene que ser posterior o igual al dia de hoy',
+            'idClient.required' => 'El campo nombre es obligatorio',
+            'date.required' => 'El campo fecha es obligatorio',
+            'date.date' => 'La fecha no es valida',
+            'date.after_or_equal' => 'La fecha tiene que ser posterior o igual al dia de hoy',
             'time.required' => 'El campo hora es obligatorio',
-            'table.required' => 'El campo mesa es obligatorio',
+            'idTable.required' => 'El campo mesa es obligatorio',
             'comments.max' => 'El campo comentario no puede tener mas de 500 caracteres',
         ]);
 
         $reserva = new Reserva();
-        $reserva->idClient = auth()->user()->id;
+
+        if (auth()->user()->id == 1) {
+            $reserva->idClient = $request->idClient;
+        } else {
+            $reserva->idClient = auth()->user()->id;
+        }
         $reserva->idTable = $request->idTable;
         $reserva->date = $request->date;
         $reserva->time = $request->time;
@@ -84,7 +92,8 @@ class BooksController extends Controller
             DB::table('reservas_mesas')->where('date', $request->date)->where('idTable', $request->idTable)->update([$time => 1]);
         }
         // Email
-        $user = auth()->user();
+        $user = User::findOrFail($reserva->idClient);
+
         $userFullName = $user->name . " " . $user->surname;
         $table = $request->idTable;
         Mail::send('mails.newBook', compact('user', 'userFullName', 'reserva', 'table'), function($message)use($user) {
@@ -172,5 +181,25 @@ class BooksController extends Controller
             
         }
         return response()->json($final, 200);
+    }
+
+    function getBooksAdmin($date, $idTable) {
+        $horas_libres = array();
+        $res = DB::table('reservas_mesas')->where('idTable', $idTable)->where('date', $date)->get();
+        if (count($res->toArray()) == 0) {
+            $horas_libres = ['12:00-13:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '20:00-21:00', '21:00-22:00', '22:00-23:00', '23:00-00:00'];
+        } else {
+            foreach (($res->toArray()) as $field => $record) {
+                foreach ($record as $field => $value) {
+                    if ($value == 0) {
+                        array_push($horas_libres, $field);                        
+                    }
+                }
+            }
+            if (count($horas_libres) < 1){
+                $horas_libres = ['No hay horas disponibles'];
+            }
+        }
+        return response()->json($horas_libres, 200);
     }
 }

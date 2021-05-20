@@ -82,9 +82,7 @@
             <button style="cursor:pointer" type="submit" class="btn btn-primary">Confirmar</button>
         </div>
     </form>
-
-    <p>
         <a href="{{ route('users.index') }} " class="btn btn-outline-danger">Regresar a listado de usuarios</a>
-    </p>
+
     </div>
 @endsection

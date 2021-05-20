@@ -6,6 +6,7 @@ use App\Http\Controllers\MesaController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\RatingsController;
 // use App\Http\Controllers\RegistrationController;
 // use App\Http\Controllers\SessionsController;
 // use App\Http\Controllers\DishesController;
@@ -47,9 +48,10 @@ Route::middleware('auth')->group(function () {
     Route::resource('books', 'App\Http\Controllers\BooksController')->except(['update', 'edit']);
 
     Route::get('/getBooks/{date}/{diners}', 'App\Http\Controllers\BooksController@getBooks')->name('getBooks');
-
+    Route::get('/getBooksAdmin/{date}/{idTable}', 'App\Http\Controllers\BooksController@getBooksAdmin')->name('getBooksAdmin');
 });
 
+Route::resource('ratings', RatingsController::class)->except(['update', 'edit', 'show']);
 
 Route::resource('/cart', 'App\Http\Controllers\CartController');
 
@@ -59,9 +61,8 @@ Route::post('register', 'App\Http\Controllers\RegistrationController@store')->na
 Route::get('/login', 'App\Http\Controllers\SessionsController@create')->name('login');
 Route::post('login', 'App\Http\Controllers\SessionsController@store')->name('login_send');
 
-Route::resource('bookings', 'App\Http\Controllers\BookingsController');
-
 Route::get('/menu', 'App\Http\Controllers\MenuController@index')->name('menu');
+
 
 Route::prefix('dishes')->group(function () {
     Route::name('dishes.')->group(function () {

@@ -24,7 +24,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label for="date">Fecha:</label>
-                    <input type="date" class="form-control" id="date" name="date"  min="{{date('Y-m-d')}}" onchange="unlockTable()" value="{{ old('date') }}" required>
+                    <input type="date" class="form-control" id="date" name="date"  min="{{date('Y-m-d', strtotime('-1 day'))}}" max="{{date('Y-m-d', strtotime('+1 year'))}}" onchange="unlockTable()" value="{{ old('date') }}" required>
                 </div>
             </div>
             <div class="col-6">
@@ -42,7 +42,7 @@
             <div class="col-12">
                 <div class="form-group">
                     <label for="time" class="form-label">Hora:</label>
-                    <select class="form-control" name="time" id="time" aria-label="Default select example">
+                    <select class="form-control" name="time" id="time" aria-label="Default select example" disabled>
                     </select>
                 </div>
             </div>
@@ -98,6 +98,7 @@
 
     function unlockTable() {
         var date = document.getElementById('table').removeAttribute('disabled');
+        var time = document.getElementById('time').removeAttribute('disabled');
         getFreeDays();
     }
 
