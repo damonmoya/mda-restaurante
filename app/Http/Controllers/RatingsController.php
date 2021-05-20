@@ -15,7 +15,7 @@ class RatingsController extends Controller
      */
     public function index()
     {
-        $ratings = Ratings::paginate(10);
+        $ratings = Ratings::paginate(8);
         return view('ratings.index', compact('ratings'));
     }
 

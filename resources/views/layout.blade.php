@@ -46,7 +46,7 @@
               </li>
             @endif
             <li class="nav-item active text-nowrap">
-              <a class="nav-link" href="{{ route('ratings.index') }}">Contacto<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="{{ route('ratings.index') }}">Valoraciones<span class="sr-only">(current)</span></a>
             </li>
             @hasrole('Administrator')
               <li class="nav-item active text-nowrap">

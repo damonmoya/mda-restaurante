@@ -12,6 +12,10 @@ class Ratings extends Model
     protected $table = 'rating';
     protected $fillable = ['idClient', 'rating', 'comment'];
 
+    public function user() {
+        return $this->belongsTo(User::class,'idClient');
+    }
+
     /**
      * The primary key associated with the table.
      *
