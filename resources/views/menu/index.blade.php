@@ -42,7 +42,7 @@
                             <div class="price-quantity">
                             <div class="form-group form-price">
                                 <label for="price">PRECIO</label>
-                                <input type="text" readOnly value="{{ $entrante->price }}" name="price" class="form-control" id="price">
+                                <input type="text" readOnly value="{{ $entrante->price }} €" name="price" class="form-control" id="price">
                             </div>
                             <div class="form-group form-quantity">
                                 <label for="quantity">CANTIDAD</label>
