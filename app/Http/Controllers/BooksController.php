@@ -52,13 +52,11 @@ class BooksController extends Controller
     {
         ////required|date|before_or_equal:today
         $data = request()->validate([
-            'idClient' => ['required'],
             'date' => ['required', 'date', 'after_or_equal:today'],
             'time' => ['required'],
             'idTable' => ['required'],
             'comments' => ['max:500'],
             ], [
-            'idClient.required' => 'El campo nombre es obligatorio',
             'date.required' => 'El campo fecha es obligatorio',
             'date.date' => 'La fecha no es valida',
             'date.after_or_equal' => 'La fecha tiene que ser posterior o igual al dia de hoy',

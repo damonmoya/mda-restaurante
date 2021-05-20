@@ -14,8 +14,9 @@
             <p>¡Se ha añadido <strong> {{ \Session::get('success') }}</strong> correctamente!</div>
     @endif
     
-    <h2 class="menu-section-title">Nuestros productos recomendados</h2>
-
+    <div class="menu-title">
+        <h2>Nuestros productos recomendados</h2>
+    </div>
     <h3 class="menu-section-title">Entrantes</h3>
     <div class="row">
         @foreach($entrantes as $entrante)
@@ -48,7 +49,7 @@
                                 <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                             </div>
                             </div>
-                            <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                         </form>
                     </div>
                 </div>
@@ -88,7 +89,7 @@
                             <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                     </form>
                 </div>
             </div>
@@ -128,7 +129,7 @@
                             <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                     </form>
                 </div>
                 </div>
@@ -168,7 +169,7 @@
                             <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                     </form>
                 </div>
                 </div>
@@ -208,7 +209,7 @@
                             <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                     </form>
                 </div>
                 </div>
@@ -248,7 +249,7 @@
                                 <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                             </div>
                             </div>
-                            <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                            <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                         </form>
                     </div>
                 </div>
@@ -288,7 +289,7 @@
                             <input type="number" min="1" max="20" value="1" name="quantity" class="form-control" id="quantity">
                         </div>
                         </div>
-                        <button type="submit" class="btn btn-warning">Agregar al carrito</button>
+                        <button type="submit" class="button btn btn-warning">Agregar al carrito</button>
                     </form>
                 </div>
                 </div>

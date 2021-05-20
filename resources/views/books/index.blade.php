@@ -10,7 +10,7 @@
     @endhasrole
 
     @if ($books->isNotEmpty())
-        <table class="table">
+        <table class="table table-dark table-striped">
             <thead class="thead-dark">
                 <div class="form-group mt-2 mt-md-0 mb-3 row">
                 </div>
